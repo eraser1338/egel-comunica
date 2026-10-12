@@ -1,0 +1,2185 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#eef1ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131518" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>Práctica EGEL Comunicación</title>
+<meta name="description" content="Práctica diaria para el EGEL Plus de Ciencias de la Comunicación, con guía en cada pregunta y repaso espaciado.">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+:root{
+  --bg:#eef1ee; --surface:#fcfdfc; --surface-2:#f2f5f3; --ink:#1b2224; --muted:#56636a; --faint:#76838a; --line:#d3dbd8;
+  --accent:#1c6e78; --accent-strong:#145861; --accent-soft:#d6eaec; --on-accent:#ffffff;
+  --ok:#17784a; --ok-soft:#d8eedf; --on-ok:#ffffff; --bad:#b3261e; --bad-soft:#f8dbd6; --on-bad:#ffffff;
+  --bub-edge:#8f877a;
+  --paper:#ffffff; --paper-filter:none; --paper-edge:#e4ddd0;
+  --shadow:0 1px 2px rgba(45,35,15,.07),0 4px 14px rgba(45,35,15,.06);
+  --focus:#2f6fdb; --bar-h:120px;
+  --rev:#c98a12; --rev-bar:#a8730d; --rev-soft:#f7ead0; --rev-ink:#8a5b00; --track:#dbe3df; --done:#1f8a55; --way-soft:#e3f2e8;
+  --today-1:#1f7681; --today-2:#155f69; --on-today:#ffffff; --today-btn:#ffffff; --today-btn-ink:#145861;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131518; --surface:#1b1e22; --surface-2:#21252a; --ink:#ebe8e1; --muted:#a8aeb5; --faint:#8b9198; --line:#30353b;
+    --accent:#5cbfc9; --accent-strong:#7fd0d8; --accent-soft:#163338; --on-accent:#0b1a1c;
+    --ok:#55c38c; --ok-soft:#163224; --on-ok:#0f1a14; --bad:#ff5f5f; --bad-soft:#4a1d1d; --on-bad:#1c0f0e;
+    --bub-edge:#6b727b;
+    --paper:#f3f1ec; --paper-filter:brightness(.85); --paper-edge:#30353b;
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 4px 16px rgba(0,0,0,.35);
+    --focus:#7aa7ff; color-scheme:dark;
+    --rev:#e0a93c; --rev-bar:#e0a93c; --rev-soft:#3a2d14; --rev-ink:#f0c46a; --track:#2b3036; --done:#4fbf86; --way-soft:#173325;
+    --today-1:#1a5961; --today-2:#12444b; --on-today:#eefafb; --today-btn:#eefafb; --today-btn-ink:#1a5961;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131518; --surface:#1b1e22; --surface-2:#21252a; --ink:#ebe8e1; --muted:#a8aeb5; --faint:#8b9198; --line:#30353b;
+  --accent:#5cbfc9; --accent-strong:#7fd0d8; --accent-soft:#163338; --on-accent:#0b1a1c;
+  --ok:#55c38c; --ok-soft:#163224; --on-ok:#0f1a14; --bad:#ff5f5f; --bad-soft:#4a1d1d; --on-bad:#1c0f0e;
+  --bub-edge:#6b727b;
+  --paper:#f3f1ec; --paper-filter:brightness(.85); --paper-edge:#30353b;
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 4px 16px rgba(0,0,0,.35);
+  --focus:#7aa7ff; color-scheme:dark;
+  --rev:#e0a93c; --rev-bar:#e0a93c; --rev-soft:#3a2d14; --rev-ink:#f0c46a; --track:#2b3036; --done:#4fbf86; --way-soft:#173325;
+  --today-1:#1a5961; --today-2:#12444b; --on-today:#eefafb; --today-btn:#eefafb; --today-btn-ink:#1a5961;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+html,body{background:var(--bg);color:var(--ink)}
+body{min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+#app{min-height:100%;display:flex;flex-direction:column}
+#app>section{flex:0 0 auto}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.2}
+p{margin:0}
+p,.sub,.msg,.small,.note{text-wrap:pretty}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+html{overscroll-behavior-y:none}
+button:disabled{cursor:default}
+a{color:var(--accent-strong)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:760px;margin:0 auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:24px 56px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.muted{color:var(--muted)}
+.small{font-size:.875rem}
+.tnum{font-variant-numeric:tabular-nums}
+.nw{white-space:nowrap}
+
+/* masthead */
+.mast{display:flex;flex-direction:column;gap:6px;padding-block:2px 6px}
+.mast h1{font-size:1.75rem;letter-spacing:-.01em}
+.mast .sub{color:var(--muted);font-size:1rem}
+.kicker{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-strong);font-weight:700}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 18px;border-radius:999px;border:2px solid var(--accent);background:var(--accent);color:var(--on-accent);font-weight:700;text-decoration:none;line-height:1.1;cursor:pointer}
+@media (hover:hover){.btn:hover{background:var(--accent-strong);border-color:var(--accent-strong)}}
+.btn.ghost{background:transparent;color:var(--accent-strong)}
+@media (hover:hover){.btn.ghost:hover{background:var(--accent-soft)}}
+.btn:disabled{opacity:.5}
+.btn.block{width:100%}
+.link{display:inline-flex;align-items:center;min-height:44px;background:none;border:0;padding:4px 2px;color:var(--accent-strong);text-decoration:underline;text-underline-offset:3px;font-size:.95rem}
+.link.plain{color:var(--muted)}
+#file:focus-visible + .btn{outline:2px solid var(--focus);outline-offset:3px}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.steps{counter-reset:s;display:flex;flex-direction:column;gap:18px;margin:0;padding:0;list-style:none}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}
+.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:2px solid var(--accent);color:var(--accent-strong);font-weight:700}
+.steps .body{display:flex;flex-direction:column;gap:8px;min-width:0}
+.url-box{display:flex;flex-direction:column;align-items:flex-start;gap:2px;font-size:.85rem;color:var(--muted)}
+.url{word-break:break-all;user-select:all;-webkit-user-select:all;color:var(--ink)}
+.drop{border:2px dashed var(--line);border-radius:12px;padding:14px;text-align:center;color:var(--muted)}
+.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.drop-hint{margin-top:8px}
+@media (hover:none){.drop-hint{display:none}.drop{border:0;padding:0;text-align:left}}
+.msg{border-radius:12px;padding:12px 14px;font-size:.95rem}
+.msg.err{background:var(--bad-soft);color:var(--ink);border:1px solid var(--bad)}
+.msg.info{background:var(--surface-2);border:1px solid var(--line)}
+
+/* sections list */
+.sec-all{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--surface);border:2px solid var(--accent);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);color:var(--ink)}
+@media (hover:hover){.sec-all:hover{background:var(--accent-soft)}}
+.sec-all .t{font-size:1.2rem;font-weight:700}
+.sec-list{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.sec-row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;border:0;border-top:1px solid var(--line);padding:14px 16px;min-height:64px;color:var(--ink)}
+.sec-row:first-child{border-top:0}
+@media (hover:hover){.sec-row:hover{background:var(--surface-2)}}
+.sec-row:focus-visible{outline-offset:-3px}
+.sec-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.sec-name{font-weight:700}
+.sec-meta,.sec-last{font-size:.875rem;color:var(--muted)}
+.sec-last{display:block}
+.sec-cont{font-size:.875rem;font-weight:700;color:var(--accent-strong)}
+.sec-go{flex:none;font-size:1.6rem;line-height:1;color:var(--faint)}
+.h2{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:10px 2px -4px}
+footer.foot{display:flex;flex-direction:column;gap:6px;font-size:.875rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin-top:6px}
+footer.foot .row{display:flex;flex-wrap:wrap;gap:0 18px}
+
+/* quiz */
+#scr-quiz:not([hidden]){display:flex;flex-direction:column;flex:1 0 auto}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:760px;margin:0 auto;padding-block:4px;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));display:flex;align-items:center;gap:10px}
+.topbar .ttl{flex:1;min-width:0;text-align:center;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .count{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.95rem;white-space:nowrap}
+.tb-btn{background:none;border:0;padding:8px 6px;min-height:44px;color:var(--accent-strong);font-weight:700;white-space:nowrap}
+.tb-btn[data-armed="1"]{background:var(--bad);color:var(--on-bad);border-radius:999px;padding-inline:14px}
+.bar{height:3px;background:var(--line)}
+.bar>i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.qwrap{flex:1 0 auto;width:100%;max-width:760px;margin:0 auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:14px 18px;display:flex;flex-direction:column;gap:12px}
+.qmeta{font-size:.92rem;color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px}
+.qmeta b{color:var(--ink)}
+.qmeta:focus{outline:none}
+.ctx-label{font-size:.875rem;color:var(--muted);font-weight:700;letter-spacing:.01em}
+.tools{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
+.kbd-hint{display:none}
+@media (pointer:fine) and (min-width:700px){#scr-quiz.quizmode .kbd-hint{display:block}}
+.note{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:10px 12px;font-size:.95rem;scroll-margin-bottom:calc(var(--bar-h) + 12px)}
+.note b{color:var(--accent-strong)}
+.answerbar{position:sticky;bottom:0;z-index:4;background:var(--bg);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.answerbar .in{max-width:760px;margin:0 auto;padding-block:10px 12px;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:10px}
+.fb{display:flex;align-items:center;gap:12px;min-height:46px}
+.fb.wait .btn{visibility:hidden}
+.fb .txt{flex:1;min-width:0;font-weight:700}
+.fb .txt.ok{color:var(--ok)}
+.fb .txt.bad{color:var(--bad)}
+.fb .btn{flex:none;padding-inline:20px}
+.answerbar .btn{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+@media (hover:hover){.answerbar .btn:hover{background:var(--ink);border-color:var(--ink);opacity:.88}}
+.answerbar .btn.ghost{background:transparent;border-color:var(--bub-edge);color:var(--ink)}
+@media (hover:hover){.answerbar .btn.ghost:hover{background:var(--surface-2);opacity:1}}
+.revnav{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px}
+.revnav .txt{grid-column:1/-1;text-align:center;font-weight:700}
+.revnav .txt.bad{color:var(--bad)}
+.revnav .txt.ok{color:var(--ok)}
+.revnav .btn{min-width:0}
+@media (max-width:480px){
+  .topbar .ttl{visibility:hidden}
+}
+@media (max-width:360px){
+  .topbar .in{gap:6px;padding-inline:12px}
+  .topbar .count{font-size:.85rem}
+  .tb-btn[data-armed="1"]{padding-inline:10px}
+}
+@media (max-width:300px){.topbar .in:has(#q-end[data-armed="1"]) .count{display:none}}
+@media (max-width:420px){
+  .mast h1{font-size:1.55rem}
+  .fb .txt{font-size:.95rem}
+  .fb .btn{padding-inline:16px}
+}
+@media (orientation:landscape) and (max-height:500px){
+  .topbar .in{padding-block:0}
+  .topbar .ttl{visibility:hidden}
+  .qwrap{padding-block:8px 12px;gap:8px}
+  .answerbar .in{flex-direction:row;align-items:center;padding-block:6px;gap:12px}
+  .fb{flex:1 1 320px;min-height:44px}
+  .fb .btn{min-height:44px}
+  .revnav{flex:1 1 auto;display:flex;align-items:center;gap:10px;min-width:0}
+  #q-prev{order:-1}
+  .revnav .btn{flex:none;white-space:nowrap;min-height:44px}
+  .revnav .txt{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .revnav .txt.try{text-align:left;overflow:visible}
+  .revnav .try-t{display:none}
+}
+@media (orientation:landscape) and (max-height:500px) and (max-width:700px){.revnav .txt:not(.try){display:none}.revnav{justify-content:flex-end}}
+
+/* summary */
+.tbl-wrap{overflow-x:auto;position:relative}
+table.res{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+table.res th,table.res td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+table.res th:first-child,table.res td:first-child{text-align:left;white-space:normal}
+table.res th{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:700}
+@media (max-width:420px){#sum-card{padding:4px 12px}table.res th,table.res td{padding:10px 4px}}
+@media (max-width:340px){table.res{font-size:.88rem}table.res th{letter-spacing:0}}
+.pass{color:var(--ok);font-weight:700}
+.fail{color:var(--bad);font-weight:700}
+.row-btns{display:flex;flex-wrap:wrap;gap:10px}
+.row-btns .btn{flex:1 1 200px}
+.res-title.pass{color:var(--ok)}
+.res-title.fail{color:var(--bad)}
+
+/* busy */
+.busy{display:flex;flex-direction:column;align-items:center;gap:14px;padding-block:72px;text-align:center}
+.prog{width:min(320px,100%);height:6px;border-radius:99px;background:var(--line);overflow:hidden;position:relative}
+.prog>i{display:block;height:100%;width:0;background:var(--accent);transition:width .15s}
+.prog.ind>i{width:35%;position:absolute;animation:ind 1.1s ease-in-out infinite}
+@keyframes ind{from{left:-35%}to{left:100%}}
+@media (prefers-reduced-motion: reduce){.prog.ind>i{animation:none;width:100%;opacity:.5}.bar>i{transition:none}}
+
+
+/* touch screens: a brief mark while the finger is down, since there is no hover */
+@media (hover:none){
+  .btn:active{filter:brightness(.92)}
+  .answerbar .btn:active{opacity:.85}
+  .sec-all:active{background:var(--accent-soft)}
+  .sec-row:active{background:var(--surface-2)}
+  .tb-btn:active,.link:active{opacity:.6}
+}
+
+/* home */
+.hero{display:flex;flex-direction:column;gap:4px;padding-block:4px 2px}
+.hero h1{font-size:2.3rem;letter-spacing:-.02em;font-weight:800;line-height:1.05}
+.hero .sub{color:var(--muted);font-size:.98rem}
+.today{position:relative;overflow:hidden;border-radius:18px;padding:18px 18px 16px;color:var(--on-today);background:linear-gradient(140deg,var(--today-1),var(--today-2));box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+
+.today-k{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;font-weight:800;opacity:.9}
+.today h2{font-size:1.45rem;font-weight:800;letter-spacing:-.01em}
+.today p{font-size:.98rem;opacity:.95}
+.today .btn{background:var(--today-btn);border-color:var(--today-btn);color:var(--today-btn-ink);min-height:50px;font-size:1.05rem}
+@media (hover:hover){.today .btn:hover{background:var(--today-btn);border-color:var(--today-btn);filter:brightness(.95)}}
+.today .link{color:var(--on-today);min-height:40px;align-self:flex-start}
+.today .done-row{display:flex;align-items:center;gap:10px}
+.today .ring{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.18);font-weight:800}
+.h2row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:10px 2px -4px}
+.h2row .h2{margin:0}
+.h2-aside{font-size:.85rem;color:var(--muted)}
+.area-list{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.area-row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;border:0;border-top:1px solid var(--line);padding:13px 16px;color:var(--ink)}
+.area-row:first-child{border-top:0}
+@media (hover:hover){.area-row:hover{background:var(--surface-2)}}
+.area-row:focus-visible{outline-offset:-3px}
+.ar-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.ar-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.ar-name{font-weight:700}
+.ar-num{font-size:.85rem;color:var(--muted);white-space:nowrap}
+.ar-meta{font-size:.85rem;color:var(--muted)}
+.ar-meta .due{color:var(--rev-ink);font-weight:700}
+.ar-go{flex:none;font-size:1.6rem;line-height:1;color:var(--faint)}
+.pbar{position:relative;display:block;height:8px;border-radius:99px;background:var(--track)}
+.pfill{display:flex;height:100%;border-radius:99px;overflow:hidden}
+.pfill>i{display:block;height:100%}
+.pbar .b-done{background:var(--done)}
+.pbar .b-rev{background:var(--rev-bar)}
+.pbar .b-way{background:repeating-linear-gradient(135deg,var(--done) 0 3px,transparent 3px 6px);box-shadow:inset 0 0 0 1px var(--done)}
+.pbar .tick{position:absolute;top:-4px;bottom:-4px;width:2px;margin-left:-1px;background:var(--ink);border-radius:2px;opacity:.55}
+.pbar.lg{height:12px}
+.pbar.lg .tick{top:-5px;bottom:-5px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.82rem;color:var(--muted);padding-inline:2px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.legend .l-done{background:var(--done)}
+.legend .l-rev{background:var(--rev)}
+.legend .l-way{border:2px solid var(--done);background:var(--way-soft)}
+.legend .l-new{border:1.5px solid var(--bub-edge)}
+.legend .l-tick{width:2px;height:12px;border-radius:2px;background:var(--ink);opacity:.55;margin-right:8px}
+.more-list{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.more-row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;border:0;border-top:1px solid var(--line);padding:13px 16px;min-height:60px;color:var(--ink)}
+.more-row:first-child{border-top:0}
+@media (hover:hover){.more-row:hover{background:var(--surface-2)}}
+.more-row .mr-ic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent-strong)}
+.more-row .mr-ic svg{width:18px;height:18px}
+
+/* area screen */
+.stat-card{display:flex;flex-direction:column;gap:12px}
+.big{font-size:2.6rem;font-weight:800;letter-spacing:-.02em;line-height:1}
+.big small{font-size:1rem;font-weight:600;color:var(--muted);letter-spacing:0;margin-left:6px}
+.sheet{display:grid;grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:8px}
+.sb{height:42px;border-radius:50%;border:2px solid var(--bub-edge);background:var(--surface);color:var(--ink);font-weight:700;font-size:.92rem;font-variant-numeric:tabular-nums;padding:0}
+.sb.rev{background:var(--rev-soft);border-color:var(--rev);color:var(--rev-ink)}
+.sb.way{background:var(--way-soft);border-color:var(--done);color:var(--ok)}
+.sb.done{background:var(--done);border-color:var(--done);color:var(--on-ok)}
+.sb.due{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--rev)}
+@media (hover:hover){.sb:hover{filter:brightness(.95)}}
+.act-sub{font-size:.875rem;color:var(--muted);margin-top:-4px;text-align:center}
+
+/* question extras */
+.qtag{display:inline-block;padding:1px 9px;border-radius:99px;font-size:.78rem;font-weight:700;vertical-align:1px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.qtag.rev{background:var(--rev-soft);color:var(--rev-ink);border-color:transparent}
+.qtag.new{background:var(--accent-soft);color:var(--accent-strong);border-color:transparent}
+.qtag.done{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.timer{font-variant-numeric:tabular-nums;font-weight:800;color:var(--ink);white-space:nowrap}
+.timer.low{color:var(--bad)}
+.idk{flex:none;min-height:44px;padding:4px 2px;background:none;border:0;color:var(--muted);text-decoration:underline;text-underline-offset:3px;font-size:.95rem}
+
+/* guide */
+.guide{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-bottom:calc(var(--bar-h) + 12px);scroll-margin-top:64px}
+.g-head{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;border:0;padding:14px 16px;min-height:56px;color:var(--ink)}
+@media (hover:hover){.g-head:hover{background:var(--surface-2)}}
+.g-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.g-k{display:inline-flex;align-items:center;gap:5px;color:var(--accent-strong);font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.g-k svg{width:15px;height:15px}
+.g-t{font-weight:700;font-size:1rem;line-height:1.3}
+.g-ch{flex:none;width:22px;height:22px;transition:transform .18s}
+.g-head[aria-expanded="true"] .g-ch{transform:rotate(180deg)}
+.g-body{padding:2px 16px 16px;display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--line)}
+.g-sec h3,.twin h3{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-strong);font-weight:800;margin:12px 0 6px}
+.g-sec p,.g-rem p{font-size:1rem;line-height:1.55}
+.g-steps{margin:0;padding:0;list-style:none;counter-reset:gs;display:flex;flex-direction:column;gap:8px}
+.g-steps li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;line-height:1.5}
+.g-steps li::before{counter-increment:gs;content:counter(gs);display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent-strong);font-weight:800;font-size:.85rem;margin-top:1px}
+.g-rem{background:var(--rev-soft);border-radius:12px;padding:2px 14px 12px}
+.g-rem h3{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rev-ink);font-weight:800;margin:10px 0 4px}
+.twin{border-top:1px dashed var(--line);padding-top:2px;display:flex;flex-direction:column;gap:10px}
+.twin-sub{font-size:.875rem;color:var(--muted);margin-top:-4px}
+.twin-q{font-size:1rem;line-height:1.55;font-weight:600}
+.twin-opts{display:flex;flex-direction:column;gap:8px}
+.topt{display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;padding:10px 12px;min-height:48px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);line-height:1.4}
+.topt .tl{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;border:2px solid var(--bub-edge);font-weight:800;font-size:.85rem}
+.topt .tx{flex:1;min-width:0;padding-top:2px}
+@media (hover:hover){.topt:hover:not(:disabled){border-color:var(--ink)}}
+.topt:disabled{cursor:default}
+.topt.ok{border-color:var(--ok);background:var(--ok-soft)}
+.topt.ok .tl{background:var(--ok);border-color:var(--ok);color:var(--on-ok)}
+.topt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.topt.bad .tl{background:var(--bad);border-color:var(--bad);color:var(--on-bad)}
+.topt.dim{opacity:.55}
+.twin-fb{font-size:.98rem;line-height:1.5}
+.twin-fb b.ok{color:var(--ok)}
+.twin-fb b.bad{color:var(--bad)}
+.lucky{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;background:var(--surface-2);border-bottom:1px solid var(--line);font-size:.92rem;color:var(--muted)}
+.chip{flex:none;min-height:44px;padding:4px 14px;border-radius:99px;border:1.5px solid var(--bub-edge);background:var(--surface);color:var(--ink);font-weight:700;font-size:.88rem}
+.chip[aria-pressed="true"]{background:var(--rev-soft);border-color:var(--rev);color:var(--rev-ink)}
+
+/* summary extras */
+.mv{display:flex;flex-wrap:wrap;gap:8px}
+.mv span{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;background:var(--surface);border:1px solid var(--line);font-size:.9rem;font-weight:600}
+.mv i{width:10px;height:10px;border-radius:50%}
+.mv .m-done i{background:var(--done)}
+.mv .m-rev i{background:var(--rev)}
+.mv .m-way i{border:2px solid var(--done);background:var(--way-soft)}
+
+/* settings and method */
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.set-row input[type=date]{font:inherit;min-height:44px;padding:6px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.segc{display:inline-flex;border:1.5px solid var(--line);border-radius:99px;overflow:hidden}
+.segc button{min-height:40px;min-width:52px;padding:4px 14px;border:0;background:transparent;font-weight:700;color:var(--ink)}
+.segc button+button{border-left:1.5px solid var(--line)}
+.segc button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+textarea.backup{font:inherit;font-size:.85rem;width:100%;min-height:76px;padding:10px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);resize:vertical}
+.ok-msg{color:var(--ok);font-weight:700}
+.err-msg{color:var(--bad);font-weight:700}
+.method li .body p{color:var(--muted)}
+.cite{font-size:.82rem;color:var(--muted)}
+@media (hover:none){
+  .area-row:active,.more-row:active,.g-head:active{background:var(--surface-2)}
+  .sb:active,.topt:active:not(:disabled),.chip:active{filter:brightness(.92)}
+  .today .btn:active{filter:brightness(.92)}
+}
+@media (prefers-reduced-motion: reduce){.g-ch{transition:none}}
+
+.tdots{display:flex;gap:5px;align-items:center}
+.tdots i{flex:0 1 10px;min-width:0;aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(255,255,255,.7)}
+.tdots i.f{background:#fff;border-color:#fff}
+.today.done{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.today.done::after{display:none}
+.today.done .today-k{color:var(--ok)}
+.today.done .ring{background:var(--ok);color:var(--on-ok)}
+.today.done p{opacity:1;color:var(--muted)}
+.today.done .link{color:var(--accent-strong)}
+.week{display:flex;gap:6px}
+.week span{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.72rem;font-weight:700;color:var(--muted);width:30px}
+.week i{width:22px;height:22px;border-radius:50%;border:2px solid var(--line)}
+.week .on i{background:var(--done);border-color:var(--done)}
+.week .now i{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--done)}
+.week .pre{opacity:.35}
+.bk{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--muted);font-size:.92rem}
+.bk p{margin:0;flex:1 1 220px}
+.bk .row{display:flex;align-items:center;gap:10px}
+.bk .btn{min-height:40px;padding:6px 14px}
+.sum-actions{display:flex;flex-direction:column;gap:10px}
+.sum-actions .link{align-self:center}
+.topics{display:flex;flex-wrap:wrap;gap:8px}
+.topic{min-height:40px;padding:6px 14px;border-radius:99px;border:1.5px solid var(--rev);background:var(--rev-soft);color:var(--rev-ink);font-weight:700;font-size:.88rem;text-align:left;line-height:1.25}
+@media (hover:hover){.topic:hover{filter:brightness(.96)}}
+.btn.danger{background:transparent;color:var(--bad);border-color:var(--bad)}
+@media (hover:hover){.btn.danger:hover{background:var(--bad-soft)}}
+@keyframes pop{50%{transform:scale(1.06)}}
+@media (prefers-reduced-motion: reduce){.bub.pop{animation:none}}
+@media (hover:none){.topic:active{filter:brightness(.92)}}
+
+
+/* question as text */
+html[data-fs="1"] .qwrap{font-size:1.12rem}
+html[data-fs="2"] .qwrap{font-size:1.26rem}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;box-shadow:var(--shadow);font-size:1.06em;line-height:1.55}
+.qcard p+p{margin-top:.7em}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;padding:12px 14px;min-height:54px;border-radius:14px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font-size:1em;line-height:1.45;-webkit-user-select:text;user-select:text;transition:background .12s,border-color .12s}
+.opt .ol{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px solid var(--bub-edge);font-weight:800;font-size:.95rem;margin-top:-2px}
+.opt .ot{flex:1;min-width:0;padding-top:2px}
+@media (hover:hover){.opt:hover:not(:disabled):not(.sel){border-color:var(--ink)}}
+.opt:disabled{cursor:default;opacity:1}
+.opt.ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.ok .ol{background:var(--ok);border-color:var(--ok);color:var(--on-ok)}
+.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.bad .ol{background:var(--bad);border-color:var(--bad);color:var(--on-bad)}
+.opt.ans{border-color:var(--ok);border-width:3px}
+.opt.ans .ol{border-color:var(--ok);color:var(--ok)}
+.opt.dim{opacity:.55}
+.opt.sel{border-color:var(--ink);background:var(--surface-2)}
+.opt.sel .ol{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.opt.pop{animation:pop .14s ease-out}
+@media (prefers-reduced-motion: reduce){.opt.pop{animation:none}}
+@media (hover:none){.opt:active:not(:disabled){background:var(--surface-2)}}
+.ctxcard{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.ctx-head{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;border:0;padding:12px 16px;min-height:56px;color:var(--ink)}
+@media (hover:hover){.ctx-head:hover{background:var(--surface-2)}}
+.ctx-head .g-txt{gap:1px}
+.ctx-act{flex:none;font-size:.85rem;font-weight:700;color:var(--accent-strong)}
+.ctx-body{padding:4px 16px 16px;border-top:1px solid var(--line);font-size:1em;line-height:1.6}
+.ctx-body p{margin-top:.75em}
+.ctx-src{font-size:.85em;color:var(--muted)}
+.area-sec{padding:10px 16px 6px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800;background:var(--surface-2);border-top:1px solid var(--line)}
+.area-sec:first-child{border-top:0}
+.area-row.soon{opacity:.6;cursor:default}
+.area-row.soon .ar-num{font-weight:700}
+.a-sim2{align-self:center}
+</style>
+
+<div id="app">
+
+
+<!-- ============ HOME ============ -->
+<section id="scr-home" hidden>
+  <div class="wrap stack">
+    <header class="hero">
+      <span class="kicker" id="home-kicker">EGEL Plus COMUNICA</span>
+      <h1 id="home-count" class="tnum"></h1>
+      <p class="sub tnum" id="home-sub"></p>
+    </header>
+    <div id="home-msg" class="msg info" role="status" hidden></div>
+    <div id="today-box"></div>
+    <div id="bk-box" class="bk" role="status" hidden></div>
+    <div class="h2row"><h2 class="h2">Tu avance</h2><span class="h2-aside tnum" id="home-total"></span></div>
+    <p class="legend" aria-hidden="true"><span><i class="l-done"></i>Dominadas</span><span><i class="l-way"></i>En camino</span><span><i class="l-rev"></i>Por repasar</span><span><i class="l-tick"></i>Meta del 90 %</span></p>
+    <div id="area-list" class="area-list"></div>
+    <div class="h2row"><h2 class="h2">Más formas de estudiar</h2></div>
+    <div class="more-list">
+      <button class="more-row" id="btn-sim"><span class="mr-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M10 2h4"/></svg></span><span class="sec-main"><span class="sec-name">Simulacro de examen</span><span class="sec-meta" id="sim-meta"></span></span><span class="sec-go" aria-hidden="true">›</span></button>
+      <button class="more-row" data-sec="all"><span class="mr-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11M4 12h16M4 17h8"/><path d="M17 4l3 3-3 3"/></svg></span><span class="sec-main"><span class="sec-name" id="all-name">Ronda con todas mezcladas</span><span class="sec-meta" id="all-meta">Todas las áreas en un orden al azar</span></span><span class="sec-go" aria-hidden="true">›</span></button>
+      <button class="more-row" id="btn-browse-all"><span class="mr-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h6"/></svg></span><span class="sec-main"><span class="sec-name" id="browse-name">Ver todas con su guía</span><span class="sec-meta">En orden. Las nuevas y las que tocan repaso se contestan antes de ver su guía.</span></span><span class="sec-go" aria-hidden="true">›</span></button>
+      <button class="more-row" id="btn-method"><span class="mr-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></span><span class="sec-main"><span class="sec-name">Cómo estudiar con esta app</span><span class="sec-meta">El método y por qué funciona</span></span><span class="sec-go" aria-hidden="true">›</span></button>
+    </div>
+    <footer class="foot">
+      <p>Preguntas, guías y gemelas escritas para esta app siguiendo la guía oficial del EGEL Plus COMUNICA de CENEVAL. No son preguntas del examen real. Herramienta personal de estudio, no oficial.</p>
+      <div class="row">
+        <button class="link plain" id="btn-settings">Ajustes, letra y respaldo</button>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<!-- ============ AREA ============ -->
+<section id="scr-area" hidden>
+  <div class="topbar">
+    <div class="in">
+      <button class="tb-btn" id="a-back">← Inicio</button>
+      <div class="ttl" id="a-title"></div>
+      <span class="count"></span>
+    </div>
+  </div>
+  <div class="wrap stack">
+    <header class="mast">
+      <span class="kicker" id="a-kicker"></span>
+      <h1 id="a-name"></h1>
+    </header>
+    <div class="card stat-card">
+      <div class="big tnum" id="a-big"></div>
+      <div id="a-bar"></div>
+      <p class="small muted tnum" id="a-goal"></p>
+      <p class="small muted tnum" id="a-last" hidden></p>
+    </div>
+    <div class="stack" style="gap:10px">
+      <button class="btn block" id="a-practice">Practicar</button>
+      <p class="act-sub" id="a-practice-sub"></p>
+      <button class="btn ghost block" id="a-sim">Simulacro</button>
+      <p class="act-sub" id="a-sim-sub"></p>
+      <button class="link a-sim2" id="a-sim2" hidden></button>
+    </div>
+    <div class="h2row"><h2 class="h2">Tu hoja de respuestas</h2></div>
+    <p class="small muted" style="margin:-4px 2px 0">Toca una pregunta. Las que no has visto o tocan repaso hoy se contestan primero, y las demás se abren con su guía.</p>
+    <div class="sheet" id="a-sheet"></div>
+    <p class="legend" aria-hidden="true"><span><i class="l-done"></i>Dominada</span><span><i class="l-way"></i>En camino</span><span><i class="l-rev"></i>Por repasar</span><span><i class="l-new"></i>Sin ver</span></p>
+  </div>
+</section>
+
+<!-- ============ SETTINGS ============ -->
+<section id="scr-set" hidden>
+  <div class="topbar"><div class="in"><button class="tb-btn" id="set-back">← Inicio</button><div class="ttl">Ajustes</div><span class="count"></span></div></div>
+  <div class="wrap stack">
+    <header class="mast">
+      <span class="kicker">Ajustes</span>
+      <h1>Tu examen y tu avance</h1>
+    </header>
+    <div class="card stack">
+      <label class="set-row" for="set-date"><b>Fecha de tu examen</b><input type="date" id="set-date" min="2026-01-01" max="2030-12-31"></label>
+      <div class="set-row"><b id="set-size-lbl">Preguntas por sesión</b><div class="segc" id="set-size" role="group" aria-labelledby="set-size-lbl"><button data-size="10">10</button><button data-size="20">20</button><button data-size="30">30</button></div></div>
+      <div class="set-row"><b id="set-fs-lbl">Tamaño de letra</b><div class="segc" id="set-fs" role="group" aria-labelledby="set-fs-lbl"><button data-fs="0" aria-label="Normal">A</button><button data-fs="1" aria-label="Grande" style="font-size:1.15rem">A</button><button data-fs="2" aria-label="Muy grande" style="font-size:1.3rem">A</button></div></div>
+    </div>
+    <div class="card stack">
+      <b>Respaldo de tu avance</b>
+      <p class="small muted">Tu avance vive en este navegador. Copia el respaldo y guárdalo en tus notas, o pégalo en otro celular para seguir ahí.</p>
+      <div class="row-btns" style="flex-wrap:wrap"><button class="btn ghost" id="set-copy">Copiar respaldo</button><button class="btn ghost" id="set-share" hidden>Compartir</button></div>
+      <p class="small muted" id="set-last"></p>
+      <textarea class="backup" id="set-paste" rows="3" placeholder="Pega aquí un respaldo para recuperarlo" spellcheck="false" autocomplete="off"></textarea>
+      <div><button class="btn ghost" id="set-restore">Recuperar este respaldo</button></div>
+      <p id="set-msg" class="small" role="status" hidden></p>
+    </div>
+    <div class="card stack">
+      <b>Empezar de cero</b>
+      <p class="small muted">Borra tu avance, tus rondas y tus días seguidos.</p>
+      <div><button class="btn danger" id="set-reset">Borrar mi avance</button></div>
+    </div>
+    <div class="row-btns"><button class="btn" id="set-home">Listo</button></div>
+  </div>
+</section>
+
+<!-- ============ METHOD ============ -->
+<section id="scr-method" hidden>
+  <div class="topbar"><div class="in"><button class="tb-btn" id="method-back">← Inicio</button><div class="ttl">Método</div><span class="count"></span></div></div>
+  <div class="wrap stack">
+    <header class="mast">
+      <span class="kicker">Método</span>
+      <h1>Cómo estudiar con esta app</h1>
+      <p class="sub">Lo que mejor funciona según la investigación sobre aprendizaje, en cinco hábitos.</p>
+    </header>
+    <ol class="steps method">
+      <li><div class="body"><b>Haz la sesión de hoy, todos los días</b><p>Veinte minutos diarios rinden más que una tarde entera el fin de semana. La sesión mezcla preguntas de todas las áreas y pone primero las que tocan repaso.</p></div></li>
+      <li><div class="body"><b>Contesta antes de mirar</b><p>Intentar recordar es lo que fija la memoria. Si de verdad no tienes idea, toca “No la sé, ver la guía”: es más honesto que adivinar, lees la explicación y la pregunta volverá.</p></div></li>
+      <li><div class="body"><b>Lee la guía cuando falles o dudes</b><p>Entender el porqué es lo que te sirve el día del examen, porque las preguntas reales se parecen pero no son iguales. Si la acertaste por suerte, márcala con “La adiviné”.</p></div></li>
+      <li><div class="body"><b>Resuelve la pregunta gemela</b><p>Cada guía trae una pregunta nueva sobre lo mismo. Si la sacas, entendiste la idea y no solo la letra.</p></div></li>
+      <li><div class="body"><b>Un simulacro a la semana</b><p>Contesta un área completa en orden y al ritmo del examen real, sin ver respuestas hasta que entregas. El EGEL da 8 horas para 204 preguntas, unos 2 minutos y medio por pregunta. Empieza por tu área más floja.</p></div></li>
+    </ol>
+    <div class="card stack">
+      <b>Cómo vuelven las preguntas</b>
+      <p class="small">Si fallas una, vuelve al día siguiente. Si la aciertas, queda en camino y vuelve a los 3 días. Cuando la vuelves a acertar en su día de repaso, queda dominada: vuelve a los 10 días y luego cada 3 semanas. Acertarla antes de su día de repaso no cuenta, porque todavía la tienes fresca.</p>
+      <p class="small">CENEVAL califica cada área con su Índice de 700 a 1300: desde 1000 es Satisfactorio y desde 1150 Sobresaliente. No publica a cuántos aciertos equivale, así que la app pone la meta en dominar al menos el 90 % de cada área. Mejor si llegas a todas, porque en el examen vienen preguntas parecidas, no las mismas.</p>
+    </div>
+    <p class="cite">Práctica de recuperación: Roediger y Karpicke, 2006. Técnicas que funcionan: Dunlosky y colegas, 2013. Repaso espaciado: Cepeda y colegas, 2006 y 2008. Reaprendizaje sucesivo: Rawson y Dunlosky, 2011. Explicaciones que ayudan a transferir: Butler, Godbole y Marsh, 2013. Transferencia a preguntas nuevas: Pan y Rickard, 2018. Mezclar temas: Rohrer y Taylor, 2007.</p>
+    <div class="row-btns"><button class="btn" id="method-home">Entendido</button></div>
+  </div>
+</section>
+
+<!-- ============ QUIZ / REVIEW ============ -->
+<section id="scr-quiz" hidden>
+  <div class="topbar">
+    <div class="in">
+      <button class="tb-btn" id="q-back">← Inicio</button>
+      <div class="ttl" id="q-title"></div>
+      <span class="count" id="q-count"></span>
+      <span class="timer" id="q-timer" role="timer" hidden></span>
+      <button class="tb-btn" id="q-end">Terminar</button>
+    </div>
+    <div class="bar"><i id="q-bar"></i></div>
+  </div>
+  <div class="qwrap">
+    <div class="qmeta" id="q-metarow" tabindex="-1"><span id="q-meta"></span><span id="q-tag" class="qtag" hidden></span></div>
+    <section id="q-ctx-box" class="ctxcard" hidden>
+      <button class="ctx-head" id="q-ctx-btn" aria-expanded="true" aria-controls="q-ctx-body"><span class="g-txt"><span class="g-k" id="q-ctx-k"></span><span class="g-t" id="q-ctx-t"></span></span><span class="ctx-act" id="q-ctx-act">Ocultar</span></button>
+      <div class="ctx-body" id="q-ctx-body"></div>
+    </section>
+    <div class="ctx-label" id="q-label" hidden></div>
+    <div class="qcard" id="q-text"></div>
+    <div class="opts" id="q-opts" role="group" aria-label="Opciones de respuesta"></div>
+    <section id="q-guide" class="guide" hidden>
+      <div class="lucky" id="q-lucky" hidden><span id="q-lucky-txt"></span><button class="chip" id="q-lucky-btn" aria-pressed="false">La adiviné</button></div>
+      <button class="g-head" id="q-guide-btn" aria-expanded="false" aria-controls="q-guide-body"><span class="g-txt"><span class="g-k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.3 1.1 2.2h5c0-.9.4-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg>Guía</span><span class="g-t" id="q-guide-topic"></span></span><svg class="g-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="g-body" id="q-guide-body" hidden></div>
+    </section>
+    <p class="kbd-hint small muted">Atajos: A, B o C para responder · G abre la guía · T muestra u oculta el texto · Enter para seguir</p>
+  </div>
+  <div class="answerbar" id="q-answerbar">
+    <div class="in">
+      <div class="fb wait" id="q-fb">
+        <button class="idk" id="q-idk" hidden>No la sé, ver la guía</button>
+        <span class="txt" id="q-fb-txt" aria-live="polite"></span>
+        <button class="btn" id="q-next" disabled>Siguiente →</button>
+      </div>
+      <div class="revnav" id="q-revnav" hidden>
+        <span class="txt" id="q-rev-txt"></span>
+        <button class="btn ghost" id="q-prev">← Anterior</button>
+        <button class="btn" id="q-rnext">Siguiente →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUMMARY ============ -->
+<section id="scr-sum" hidden>
+  <div class="wrap stack">
+    <header class="mast">
+      <span class="kicker" id="sum-kicker">Resultado</span>
+      <h1 id="sum-title" class="res-title"></h1>
+      <p class="sub" id="sum-sub"></p>
+    </header>
+    <div class="card" id="sum-card">
+      <div class="tbl-wrap"><table class="res" id="sum-table"></table></div>
+    </div>
+    <div class="mv" id="sum-mv" hidden></div>
+    <p class="muted small" id="sum-mv-note" hidden></p>
+    <div class="stack" id="sum-topics" style="gap:8px" hidden>
+      <h2 class="h2" style="margin:6px 2px 0">Para repasar mañana</h2>
+      <div class="topics" id="sum-topic-list"></div>
+    </div>
+    <p class="muted small" id="sum-rule"></p>
+    <div class="sum-actions" id="sum-actions">
+      <div id="sum-wrong-box"><button class="btn block" id="sum-review"></button></div>
+      <button class="btn ghost block" id="sum-again">Nueva ronda</button>
+      <button class="btn ghost block" id="sum-home">Inicio</button>
+    </div>
+  </div>
+</section>
+
+
+</div>
+
+
+
+<script src="preguntas.js"></script>
+<script>
+
+/*CORE-START*/
+var CORE = (function () {
+  'use strict';
+
+  // ---------------------------------------------------------------- data
+  // The six areas of the EGEL Plus COMUNICA (CENEVAL guide, 2023). n: questions in the real exam.
+  // sec: 'd' disciplinary section, 'l' language and communication section.
+  var AREAS = [
+    { id: 'pub',  name: 'Publicidad',                  short: 'Pub',  n: 30, sec: 'd' },
+    { id: 'per',  name: 'Periodismo',                  short: 'Per',  n: 37, sec: 'd' },
+    { id: 'org',  name: 'Comunicación organizacional', short: 'Org',  n: 30, sec: 'd' },
+    { id: 'prod', name: 'Productos comunicativos',     short: 'Prod', n: 47, sec: 'd' },
+    { id: 'lec',  name: 'Comprensión lectora',         short: 'Lect', n: 30, sec: 'l' },
+    { id: 'red',  name: 'Redacción indirecta',         short: 'Red',  n: 30, sec: 'l' }
+  ];
+  // the real exam gives 8 hours for 204 questions: a simulacro keeps that pace for the questions it has
+  var MIN_PER_Q = 480 / 204;
+  var RAW = (typeof window !== 'undefined' && window.EGEL_DATA) || { ctx: [], q: [] };
+  var AID = {};
+  AREAS.forEach(function (a, ai) { AID[a.id] = ai; });
+  // support texts: { id, a, t (title), b (body, paragraphs split by a blank line), src }
+  var CTX = [], CTX_BY = {};
+  (RAW.ctx || []).forEach(function (c) {
+    if (!c || CTX_BY[c.id] || AID[c.a] === undefined) throw new Error('texto de apoyo inválido: ' + (c && c.id));
+    var o = { ci: CTX.length, id: c.id, a: AID[c.a], t: c.t, b: c.b, src: c.src || '', qs: [] };
+    CTX.push(o); CTX_BY[c.id] = o;
+  });
+  // questions: { id, a, x (support text id, optional), q, o [3 options], k (0..2), g (guide) }
+  // Progress is stored by id, so adding or reordering questions never mixes up what was answered.
+  var Q = [], byId = {}, perArea = AREAS.map(function () { return 0; });
+  (RAW.q || []).forEach(function (r) {
+    var ai = AID[r && r.a];
+    if (!r || ai === undefined || byId[r.id] || !/^[a-z]+-\d+$/.test(r.id) || !Array.isArray(r.o) || r.o.length !== 3 || !(r.k >= 0 && r.k <= 2)) throw new Error('pregunta inválida: ' + (r && r.id));
+    var q = { i: Q.length, id: r.id, a: ai, n: ++perArea[ai], q: r.q, o: r.o, k: r.k, ctx: -1, guide: r.g || null };
+    if (r.x) {
+      var c = CTX_BY[r.x];
+      if (!c || c.a !== ai) throw new Error('texto de apoyo sin área: ' + r.id);
+      q.ctx = c.ci; c.qs.push(q.n);
+    }
+    Q.push(q); byId[q.id] = q;
+  });
+  AREAS.forEach(function (a, ai) { a.bank = perArea[ai]; a.mins = Math.max(5, Math.round(a.bank * MIN_PER_Q)); });
+  // the areas that already have questions
+  var LIVE = AREAS.filter(function (a) { return a.bank > 0; });
+  function fnv1a(s) {
+    var h = 0x811c9dc5;
+    for (var ch of s) { h ^= ch.codePointAt(0); h = Math.imul(h, 0x01000193) >>> 0; }
+    return h >>> 0;
+  }
+
+  // 'all' and the areas: rounds over the whole pool. 'hoy': the daily session, a short list picked from
+  // the whole pool. 'sim-<area>': the area as an exam, with its real time and no answers until the end.
+  function areaPool(ai) { return Q.filter(function (q) { return q.a === ai; }).map(function (q) { return q.id; }); }
+  var ALL_POOL = Q.map(function (q) { return q.id; });
+  var SESSION_MAX = 60;
+  var SECTIONS = [{ id: 'all', name: 'Todas las áreas', pool: ALL_POOL }].concat(
+    AREAS.map(function (a, ai) { return { id: a.id, name: a.name, pool: areaPool(ai), area: ai }; }),
+    [{ id: 'hoy', name: 'Sesión de hoy', pool: ALL_POOL, sub: true }],
+    AREAS.map(function (a, ai) { return { id: 'sim-' + a.id, name: 'Simulacro de ' + a.name, pool: areaPool(ai), area: ai, sim: true, lim: a.mins * 60000 }; }),
+    [{ id: 'sim-len', name: 'Simulacro de Lenguaje y Comunicación', pool: areaPool(AID.lec).concat(areaPool(AID.red)), sim: true, lim: Math.max(5, Math.round((AREAS[AID.lec].bank + AREAS[AID.red].bank) * MIN_PER_Q)) * 60000 }]
+  );
+  function section(id) { for (var s = 0; s < SECTIONS.length; s++) if (SECTIONS[s].id === id) return SECTIONS[s]; return null; }
+
+  // ---------------------------------------------------------------- randomness
+  // Uniform integers from the browser's cryptographic generator, with rejection
+  // sampling (no modulo bias). Fisher–Yates on top gives every order the same chance.
+  var _buf = new Uint32Array(64), _bufPos = 64;
+  function randU32() {
+    var c = (typeof globalThis !== 'undefined' && globalThis.crypto) || (typeof window !== 'undefined' && (window.crypto || window.msCrypto));
+    if (c && c.getRandomValues) {
+      if (_bufPos >= _buf.length) { c.getRandomValues(_buf); _bufPos = 0; }
+      return _buf[_bufPos++];
+    }
+    return Math.floor(Math.random() * 4294967296) >>> 0;
+  }
+  function randInt(n) {
+    if (!(n >= 1) || n > 4294967296 || Math.floor(n) !== n) throw new RangeError('randInt: ' + n);
+    var limit = 4294967296 - (4294967296 % n); // largest multiple of n that fits
+    var x;
+    do { x = randU32(); } while (x >= limit);
+    return x % n;
+  }
+  function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = randInt(i + 1);
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+  }
+
+  function fnv1a(s) {
+    var h = 0x811c9dc5;
+    for (var ch of s) { h ^= ch.codePointAt(0); h = Math.imul(h, 0x01000193) >>> 0; }
+    return h >>> 0;
+  }
+
+  // ---------------------------------------------------------------- rounds
+  // An answer is 0..2 (A..C), or -1 for "No la sé" (counts as wrong; not offered in a simulacro).
+  function isChoice(c, sim) { return c === 0 || c === 1 || c === 2 || (c === -1 && !sim); }
+  // order: an optional order chosen by the caller (it must be a valid order for the section)
+  function newRound(secId, order) {
+    var sec = section(secId);
+    if (!sec) throw new Error('sección desconocida');
+    var r = { v: 1, sec: secId, order: order ? order.slice() : groupCtx(shuffle(sec.pool.slice())), pos: 0, ans: {}, t0: Date.now() };
+    if (sec.sim) { r.spent = 0; r.rev = 0; }
+    if (!validRound(r)) throw new Error('orden no válido');
+    return r;
+  }
+  function validRound(r) {
+    try {
+      var sec = section(r && r.sec);
+      if (!sec || r.v !== 1 || !Array.isArray(r.order)) return false;
+      if (sec.sub ? !(r.order.length >= 1 && r.order.length <= SESSION_MAX) : r.order.length !== sec.pool.length) return false;
+      var inPool = {}, seen = {};
+      sec.pool.forEach(function (i) { inPool[i] = 1; });
+      for (var k = 0; k < r.order.length; k++) {
+        var x = r.order[k];
+        if (!inPool[x] || seen[x]) return false;
+        seen[x] = 1;
+      }
+      if (!(r.pos >= 0 && r.pos <= r.order.length) || Math.floor(r.pos) !== r.pos) return false;
+      if (sec.sim && !(r.pos < r.order.length && typeof r.rev === 'number' && r.rev >= 0 && Math.floor(r.rev) === r.rev)) return false;
+      if (!r.ans || typeof r.ans !== 'object' || Array.isArray(r.ans)) return false;
+      for (var key in r.ans) {
+        var c = r.ans[key];
+        if (!seen[key] || !isChoice(c, sec.sim)) return false;
+      }
+      if (sec.sim && !(typeof r.spent === 'number' && r.spent >= 0 && r.spent < 864e5)) return false;
+      if (typeof r.t0 !== 'number' || !isFinite(r.t0)) return false;
+      return true;
+    } catch (e) { return false; }
+  }
+  // simulacro: mark, change or clear (the same letter again) the answer of the question on screen
+  function mark(r, qi, c) {
+    var sec = section(r.sec);
+    if (!sec || !sec.sim || r.order[r.pos] !== qi || !(c === 0 || c === 1 || c === 2)) return false;
+    if (r.ans[qi] === c) delete r.ans[qi]; else r.ans[qi] = c;
+    r.rev++;
+    return true;
+  }
+  function goTo(r, pos) {
+    var sec = section(r.sec);
+    if (!sec || !sec.sim || !(pos >= 0 && pos < r.order.length) || pos === r.pos) return false;
+    r.pos = pos; r.rev++;
+    return true;
+  }
+  function answer(r, qi, c) {
+    if (section(r.sec).sim) return false; // a simulacro is answered with mark()
+    if (r.order[r.pos] !== qi) return false;
+    if (r.ans[qi] !== undefined) return false;
+    var sec = section(r.sec);
+    if (!isChoice(c, sec && sec.sim)) return false;
+    r.ans[qi] = c;
+    return true;
+  }
+
+  // ---------------------------------------------------------------- spaced review
+  // Per question: [level, due, last, firstOk, tries, rightTries]. Level 1: missed, comes back the next day.
+  // Level 2: right once, comes back in 3 days. Level 3: dominated, checked again in 10 days and then 21.
+  // A right answer moves a question up only when it was due, so cramming the same day doesn't count.
+  var DAY = 864e5;
+  function dayStart(ts) { var d = new Date(ts); d.setHours(0, 0, 0, 0); return d.getTime(); }
+  function addDays(ts, k) { var d = new Date(dayStart(ts)); d.setDate(d.getDate() + k); return d.getTime(); }
+  function dayKey(ts) { var d = new Date(ts); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function srsApply(rec, ok, ts) {
+    if (!rec) return ok ? [2, addDays(ts, 3), ts, 1, 1, 1] : [1, addDays(ts, 1), ts, 0, 1, 0];
+    var lvl = rec[0], due = rec[1], n = rec[4] + 1, nok = rec[5] + (ok ? 1 : 0);
+    if (!ok) return [1, addDays(ts, 1), ts, rec[3], n, nok];
+    if (due <= ts) { due = addDays(ts, lvl >= 3 ? 21 : lvl === 2 ? 10 : 3); lvl = Math.min(3, lvl + 1); }
+    return [lvl, due, ts, rec[3], n, nok];
+  }
+  function validSrs(rec) {
+    return Array.isArray(rec) && rec.length === 6 && (rec[0] === 1 || rec[0] === 2 || rec[0] === 3) &&
+      rec.slice(1, 3).every(function (x) { return typeof x === 'number' && isFinite(x) && x > 0; }) &&
+      (rec[3] === 0 || rec[3] === 1) && Math.floor(rec[4]) === rec[4] && rec[4] >= 1 && rec[4] < 1e6 &&
+      Math.floor(rec[5]) === rec[5] && rec[5] >= 0 && rec[5] <= rec[4];
+  }
+  // four states: never seen, to review (missed), on its way (right once, to confirm), dominated
+  function srsState(rec) { return !rec ? 'new' : rec[0] >= 3 ? 'done' : rec[0] === 2 ? 'way' : 'rev'; }
+  function isDue(rec, ts) { return !!rec && rec[1] <= ts; }
+  // Counts for a pool: dominated, in review, never seen, due now, first-attempt right / seen.
+  function poolStats(pool, srs, ts) {
+    var s = { n: pool.length, done: 0, way: 0, rev: 0, fresh: 0, due: 0, seen: 0, first: 0 };
+    pool.forEach(function (qi) {
+      var r = srs[qi], st = srsState(r);
+      if (st === 'new') { s.fresh++; return; }
+      s.seen++; s.first += r[3]; s[st]++;
+      if (isDue(r, ts)) s.due++;
+    });
+    return s;
+  }
+  // Daily session: what is due first (weakest first, leaving half for new ones while any remain), then
+  // questions never seen, taken one at a time
+  // from the area that needs it most, then the weakest of the rest. Shuffled, so areas are mixed.
+  function buildSession(srs, ts, size) {
+    size = Math.max(1, Math.min(SESSION_MAX, size || 20));
+    var due = [], fresh = {}, rest = [], nFresh = 0;
+    AREAS.forEach(function (a, ai) { fresh[ai] = []; });
+    Q.forEach(function (q) {
+      var r = srs[q.id];
+      if (!r) { fresh[q.a].push(q.id); nFresh++; }
+      else if (isDue(r, ts)) due.push(q.id);
+      else rest.push(q.id);
+    });
+    var byWeak = function (a, b) { var ra = srs[a], rb = srs[b]; return ra[0] - rb[0] || ra[1] - rb[1]; }; // stable sort: ties keep the shuffle
+    due = shuffle(due).sort(byWeak);
+    // while there are questions never seen, at least half of the session is new
+    var out = due.slice(0, nFresh ? Math.max(0, size - Math.min(Math.ceil(size / 2), nFresh)) : size);
+    var stats = AREAS.map(function (a, ai) { return poolStats(areaPool(ai), srs, ts); });
+    AREAS.forEach(function (a, ai) { shuffle(fresh[ai]); });
+    while (out.length < size && nFresh > 0) {
+      var best = -1, bestNeed = -1, ties = 0;
+      AREAS.forEach(function (a, ai) {
+        if (!fresh[ai].length || !stats[ai].n) return;
+        var s = stats[ai], need = 1 - (s.done + 0.6 * s.way + 0.3 * s.rev) / s.n;
+        if (need > bestNeed + 1e-9) { best = ai; bestNeed = need; ties = 1; }
+        else if (Math.abs(need - bestNeed) <= 1e-9 && randInt(++ties) === 0) best = ai;
+      });
+      out.push(fresh[best].pop()); nFresh--;
+      stats[best].way++; stats[best].fresh--;
+    }
+    if (out.length < size) {
+      rest = shuffle(rest).sort(function (a, b) { var ra = srs[a], rb = srs[b]; return ra[0] - rb[0] || ra[2] - rb[2]; });
+      out = out.concat(rest.slice(0, size - out.length));
+    }
+    return groupCtx(shuffle(out));
+  }
+  // questions on the same support text go together, in their own order, where the first of them fell
+  function groupCtx(order) {
+    var out = [], placed = {};
+    order.forEach(function (qi) {
+      var q = byId[qi];
+      if (placed[qi]) return;
+      if (q.ctx < 0) { out.push(qi); placed[qi] = 1; return; }
+      order.filter(function (x) { return byId[x].ctx === q.ctx; }).sort(function (x, y) { return byId[x].n - byId[y].n; })
+        .forEach(function (x) { out.push(x); placed[x] = 1; });
+    });
+    return out;
+  }
+  // Practice order for one area: due first (weakest first), then never seen, then the rest, each part shuffled.
+  function practiceOrder(pool, srs, ts) {
+    var due = [], fresh = [], rest = [];
+    pool.forEach(function (qi) { var r = srs[qi]; if (!r) fresh.push(qi); else if (isDue(r, ts)) due.push(qi); else rest.push(qi); });
+    due = shuffle(due).sort(function (a, b) { return srs[a][0] - srs[b][0] || srs[a][1] - srs[b][1]; });
+    return groupCtx(due.concat(shuffle(fresh), shuffle(rest)));
+  }
+  function answeredCount(r) { var n = 0; r.order.forEach(function (qi) { if (r.ans[qi] !== undefined) n++; }); return n; }
+  // all: unanswered questions count as wrong, as in the real exam (simulacro)
+  function grade(r, keys, all) {
+    var by = AREAS.map(function (a, ai) { return { a: ai, c: 0, n: 0 }; }), c = 0, n = 0, wrong = [];
+    r.order.forEach(function (qi) {
+      var x = r.ans[qi];
+      if (x === undefined && !all) return;
+      var q = byId[qi];
+      by[q.a].n++; n++;
+      if (x === keys[qi]) { by[q.a].c++; c++; } else wrong.push(qi);
+    });
+    return { c: c, n: n, by: by.filter(function (b) { return b.n > 0; }), wrong: wrong };
+  }
+  // percent right, rounded down so 89.6 never shows as the goal. CENEVAL does not publish its cut
+  // points as a share of right answers, so the app sets its own goal: 90 % or more.
+  var GOAL = 0.9;
+  function pct(c, n) { return n ? Math.floor(c * 100 / n + 1e-9) : null; }
+  function passes(c, n) { return n > 0 && c >= GOAL * n - 1e-9; }
+
+  return {
+    AREAS: AREAS, LIVE: LIVE, AID: AID, Q: Q, byId: byId, CTX: CTX, SECTIONS: SECTIONS, section: section, GOAL: GOAL,
+    randU32: randU32, randInt: randInt, shuffle: shuffle, fnv1a: fnv1a, groupCtx: groupCtx,
+    newRound: newRound, validRound: validRound, answer: answer, mark: mark, goTo: goTo, answeredCount: answeredCount, grade: grade, pct: pct, passes: passes,
+    isChoice: isChoice, SESSION_MAX: SESSION_MAX, ALL_POOL: ALL_POOL, areaPool: areaPool, DAY: DAY, dayStart: dayStart, addDays: addDays, dayKey: dayKey,
+    srsApply: srsApply, validSrs: validSrs, srsState: srsState, isDue: isDue, poolStats: poolStats, buildSession: buildSession, practiceOrder: practiceOrder
+  };
+})();
+/*CORE-END*/
+
+(function () {
+  'use strict';
+  var C = CORE, LETTERS = 'ABC';
+  var $ = function (id) { return document.getElementById(id); };
+  try { document.documentElement.lang = 'es'; } catch (e) {}
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function plural(n, one, many) { return n + ' ' + (n === 1 ? one : many); }
+  // tap guards use a clock that never jumps, so a corrected phone clock can't freeze the buttons
+  var now = (typeof performance !== 'undefined' && performance && typeof performance.now === 'function')
+    ? function () { return performance.now(); } : function () { return Date.now(); };
+
+  // ---------------------------------------------------------------- app state
+  var app = {
+    keys: {}, screen: '', screenAt: -1e9, round: null, mode: 'quiz', // quiz | review | browse
+    review: null, summary: null, shownAt: -1e9, ctxOpen: {}, closeGuardUntil: -1e9, now: now
+  };
+  function isActive(sec) { return app.screen === 'scr-quiz' && app.mode === 'quiz' && app.round && app.round.sec === sec; }
+
+  // ---------------------------------------------------------------- persistence
+  // One localStorage record; every save merges per section, so two tabs never erase each other.
+  C.Q.forEach(function (q) { app.keys[q.id] = q.k; });
+  var LS_KEY = 'egel-comunica.v1', VIEW_KEY = 'egel-comunica.view', FS_KEY = 'egel-comunica.fs', NAG_KEY = 'egel-comunica.bknag';
+  function isInt(x, lo, hi) { return typeof x === 'number' && Math.floor(x) === x && x >= lo && x <= hi; }
+  function isNum(x) { return typeof x === 'number' && isFinite(x); }
+  function cleanAns(sec, ans) {
+    if (!ans || typeof ans !== 'object' || Array.isArray(ans)) return null;
+    var inPool = {}, out = {}, n = 0;
+    sec.pool.forEach(function (i) { inPool[i] = 1; });
+    for (var k in ans) {
+      if (!Object.prototype.hasOwnProperty.call(ans, k)) continue;
+      var c = ans[k];
+      if (!inPool[k] || !C.isChoice(c, sec.sim)) return null;
+      out[k] = c; n++;
+    }
+    return n ? out : null;
+  }
+  var DEFAULT_EXAM = '2026-12-07';
+  function validDate(d) { return typeof d === 'string' && /^20[2-3]\d-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(d) && !isNaN(new Date(d + 'T12:00:00').getTime()); }
+  function cleanPrefs(p) {
+    if (!p || typeof p !== 'object' || Array.isArray(p)) return null;
+    return { exam: validDate(p.exam) ? p.exam : DEFAULT_EXAM, size: [10, 20, 30].indexOf(p.size) >= 0 ? p.size : 20, bk: isNum(p.bk) && p.bk > 0 ? p.bk : 0, t: isNum(p.t) ? p.t : 0 };
+  }
+  function cleanState(s) {
+    var out = { v: 1, rounds: {}, last: {}, srs: {}, days: {}, prefs: null, resetAt: 0 };
+    if (!s || typeof s !== 'object' || s.v !== 1) return out;
+    if (isNum(s.resetAt) && s.resetAt > 0) out.resetAt = s.resetAt;
+    if (s.srs && typeof s.srs === 'object' && !Array.isArray(s.srs)) {
+      Object.keys(s.srs).forEach(function (k) {
+        var rec = s.srs[k];
+        if (C.byId[k] && C.validSrs(rec) && rec[2] >= out.resetAt) out.srs[k] = rec;
+      });
+    }
+    if (s.days && typeof s.days === 'object' && !Array.isArray(s.days)) {
+      var since = out.resetAt ? C.dayKey(out.resetAt) : '';
+      Object.keys(s.days).forEach(function (k) { if (validDate(k) && k >= since && isInt(s.days[k], 1, 1e6)) out.days[k] = s.days[k]; });
+    }
+    var pr = cleanPrefs(s.prefs);
+    if (pr) out.prefs = pr;
+    if (s.rounds && typeof s.rounds === 'object' && !Array.isArray(s.rounds)) {
+      Object.keys(s.rounds).forEach(function (k) { var r = s.rounds[k]; if (C.validRound(r) && r.sec === k && r.t0 >= out.resetAt) out.rounds[k] = r; });
+    }
+    if (s.last && typeof s.last === 'object' && !Array.isArray(s.last)) {
+      Object.keys(s.last).forEach(function (k) {
+        var l = s.last[k], sec = C.section(k);
+        if (!sec || !l || !isInt(l.n, 1, sec.pool.length) || !isInt(l.c, 0, l.n)) return;
+        var o = { c: l.c, n: l.n, total: isInt(l.total, l.n, sec.pool.length) ? l.total : l.n, t: isNum(l.t) ? l.t : 0 };
+        if (isNum(l.t0)) o.t0 = l.t0;
+        if ((o.t0 || o.t) < out.resetAt) return;
+        if (sec.sim && isNum(l.sp)) o.sp = l.sp;
+        if (k === 'all' && isInt(l.areas, 1, C.AREAS.length) && isInt(l.ok, 0, l.areas)) { o.areas = l.areas; o.ok = l.ok; }
+        out.last[k] = o;
+      });
+    }
+    return out;
+  }
+  // the results on screen are kept per tab (sessionStorage), so a reload brings them back
+  // without another tab ever opening on them
+  function readView() {
+    try {
+      var v = JSON.parse(sessionStorage.getItem(VIEW_KEY) || 'null'), sec = v && C.section(v.sec), ans = sec && cleanAns(sec, v.ans);
+      if (!ans) return null;
+      var out = { sec: v.sec, ans: ans, total: v.total, t0: isNum(v.t0) ? v.t0 : 0, m0: isInt(v.m0, 0, C.Q.length) ? v.m0 : -1, sp: isNum(v.sp) ? v.sp : 0, up: v.up === 1,
+        sb: isInt(v.sb, 0, C.Q.length) ? v.sb : -1, lk: isInt(v.lk, 0, C.Q.length) ? v.lk : 0 };
+      // a session's list, or a simulacro's full order (its unanswered questions count), comes with it
+      if (Array.isArray(v.ord) && C.validRound({ v: 1, sec: v.sec, order: v.ord, pos: v.ord.length, ans: ans, t0: out.t0 || 1, spent: 0 })) out.ord = v.ord;
+      if (sec.sub ? v.total >= 1 && v.total <= C.SESSION_MAX : v.total === sec.pool.length) return (sec.sim && !out.ord) ? null : out;
+    } catch (e) {}
+    return null;
+  }
+  function writeView(v) { try { if (v) sessionStorage.setItem(VIEW_KEY, JSON.stringify(v)); else sessionStorage.removeItem(VIEW_KEY); } catch (e) {} }
+  function readStored() { try { return cleanState(JSON.parse(localStorage.getItem(LS_KEY) || 'null')); } catch (e) { return cleanState(null); } }
+  var state = readStored();
+  var dirty = { rounds: {}, last: {}, srs: {}, days: {}, prefs: false, unreset: false };
+  var storageOk = true;
+  // removing a round names the round (its t0), so a newer round saved by another tab is never removed
+  function setRound(sec, r, delT0) { if (r) { state.rounds[sec] = r; dirty.rounds[sec] = 1; } else { delete state.rounds[sec]; dirty.rounds[sec] = { del: delT0 }; } }
+  function setLast(sec, l) { state.last[sec] = l; dirty.last[sec] = 1; }
+  function saveState() {
+    var cur = readStored(), ok = true;
+    Object.keys(dirty.rounds).forEach(function (k) {
+      var mine = state.rounds[k], st = cur.rounds[k], d = dirty.rounds[k];
+      if (mine) {
+        // never replace a newer round, or this same round with more progress, saved elsewhere
+        // (a simulacro moves back and forth and changes answers: its revision count orders the copies)
+        if (!st || st.t0 < mine.t0 || (st.t0 === mine.t0 && (C.section(k).sim ? (st.rev || 0) <= (mine.rev || 0) :
+          st.pos <= mine.pos && C.answeredCount(st) <= C.answeredCount(mine)))) cur.rounds[k] = mine;
+      } else if (st && d && typeof d === 'object' && st.t0 <= d.del) delete cur.rounds[k];
+    });
+    Object.keys(dirty.last).forEach(function (k) { var l = state.last[k], st = cur.last[k]; if (l && !(st && (st.t0 || 0) > (l.t0 || 0))) cur.last[k] = l; });
+    // a reset in any tab wins over older progress from every tab, until a backup is restored
+    if (dirty.unreset) cur.resetAt = 0;
+    else if (state.resetAt > cur.resetAt) cur = cleanState(Object.assign({}, cur, { resetAt: state.resetAt }));
+    Object.keys(dirty.srs).forEach(function (k) { var m = state.srs[k], st = cur.srs[k]; if (m && m[2] >= cur.resetAt && (!st || st[2] <= m[2])) cur.srs[k] = m; });
+    Object.keys(dirty.days).forEach(function (k) { if (state.days[k] && state.days[k] > (cur.days[k] || 0)) cur.days[k] = state.days[k]; });
+    if (dirty.prefs && state.prefs && (!cur.prefs || cur.prefs.t <= state.prefs.t)) cur.prefs = state.prefs;
+    var cut = C.dayKey(Date.now() - 400 * C.DAY);
+    Object.keys(cur.days).forEach(function (k) { if (k < cut) delete cur.days[k]; });
+    try { localStorage.setItem(LS_KEY, JSON.stringify(cur)); } catch (e) { ok = false; }
+    if (ok) {
+      dirty = { rounds: {}, last: {}, srs: {}, days: {}, prefs: false, unreset: false };
+      adopt(cur);
+    }
+    storageOk = ok;
+    return ok;
+  }
+  // take what other tabs saved, except the round being played here
+  function adopt(cur) {
+    Object.keys(cur.rounds).forEach(function (k) { if (!isActive(k) && !dirty.rounds[k]) state.rounds[k] = cur.rounds[k]; });
+    Object.keys(state.rounds).forEach(function (k) { if (!cur.rounds[k] && !isActive(k) && !dirty.rounds[k]) delete state.rounds[k]; });
+    Object.keys(cur.last).forEach(function (k) { if (!dirty.last[k]) state.last[k] = cur.last[k]; });
+    if (cur.resetAt > state.resetAt) {
+      state.resetAt = cur.resetAt;
+      Object.keys(state.last).forEach(function (k) { if (!cur.last[k] && !dirty.last[k]) delete state.last[k]; });
+    }
+    Object.keys(cur.srs).forEach(function (k) { if (!dirty.srs[k]) state.srs[k] = cur.srs[k]; });
+    Object.keys(state.srs).forEach(function (k) { if (!cur.srs[k] && !dirty.srs[k]) delete state.srs[k]; });
+    Object.keys(cur.days).forEach(function (k) { if (!dirty.days[k]) state.days[k] = cur.days[k]; });
+    Object.keys(state.days).forEach(function (k) { if (!cur.days[k] && !dirty.days[k]) delete state.days[k]; });
+    if (!dirty.prefs) state.prefs = cur.prefs;
+  }
+  // The round shown here may have been moved on in another tab, or by this same page before the
+  // phone froze it. Rounds are told apart by t0 (when they started): a newer round of the same area
+  // or a finished one makes this copy obsolete; for the same round, the copy with more progress wins.
+  function syncActive() {
+    var r = app.round;
+    if (!r) return 'ok';
+    var cur = readStored(), sr = cur.rounds[r.sec], l = cur.last[r.sec];
+    if (l && l.t0 === r.t0) return 'finished';
+    if ((l && l.t0 > r.t0) || (sr && sr.t0 > r.t0)) return 'replaced';
+    if (sr && sr.t0 === r.t0) {
+      if (sr.pos >= sr.order.length) return 'finished';
+      var ahead = C.section(r.sec).sim ? (sr.rev || 0) > (r.rev || 0) : sr.pos > r.pos || C.answeredCount(sr) > C.answeredCount(r);
+      if (ahead) { app.round = sr; state.rounds[r.sec] = sr; delete dirty.rounds[r.sec]; return 'moved'; }
+    }
+    return 'ok';
+  }
+  function roundGone(why) {
+    var sec = app.round.sec;
+    delete state.rounds[sec]; delete dirty.rounds[sec];
+    app.round = null;
+    renderHome(why === 'finished' ? 'Esa ronda ya la terminaste en otra pestaña.' : 'En otra pestaña empezaste otra ronda de esta área.');
+  }
+  function refreshFromStorage() {
+    adopt(readStored());
+    if (app.screen === 'scr-home') { renderHome(null, true); return; }
+    if (app.screen === 'scr-area' && app.areaId) { renderArea(app.areaId); return; }
+    if (app.screen !== 'scr-quiz' || app.mode !== 'quiz' || !app.round) return;
+    var s = syncActive();
+    if (s === 'moved') renderQuestion();
+    else if (s !== 'ok') roundGone(s);
+  }
+  window.addEventListener('storage', function (e) { if (e.key === LS_KEY || e.key === null) refreshFromStorage(); });
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') refreshFromStorage(); });
+  window.addEventListener('pageshow', function (e) { if (e.persisted) refreshFromStorage(); });
+
+
+  // ---------------------------------------------------------------- screens
+  var SCREENS = ['scr-home', 'scr-area', 'scr-set', 'scr-method', 'scr-quiz', 'scr-sum'];
+  function show(id) {
+    if (app.screen === 'scr-quiz' && id !== 'scr-quiz') stopSim();
+    SCREENS.forEach(function (s) { $(s).hidden = s !== id; });
+    app.screen = id; app.screenAt = now();
+    navSync(id);
+    app.shownKey = ''; // coming into the questions always counts as a question newly shown
+    // a "tap again to confirm" never survives a change of screen
+    Array.prototype.forEach.call(document.querySelectorAll('[data-armed="1"]'), function (b) { if (b._normalText) disarm(b, b._normalText); });
+    window.scrollTo(0, 0);
+  }
+
+
+  // ---------------------------------------------------------------- progress, dates and preferences
+  function prefs() { return state.prefs || { exam: DEFAULT_EXAM, size: 20, t: 0 }; }
+  function setPrefs(p) { state.prefs = { exam: p.exam, size: p.size, bk: p.bk || (state.prefs && state.prefs.bk) || 0, t: Date.now() }; dirty.prefs = true; saveState(); }
+  function backupDone() { var p = prefs(); setPrefs({ exam: p.exam, size: p.size, bk: Date.now() }); if (app.screen === 'scr-set') $('set-last').textContent = 'Último respaldo: hoy.'; }
+  function shareBackup(btn) {
+    var code = backupCode();
+    try {
+      navigator.share({ title: 'Respaldo de Práctica EGEL', text: code }).then(backupDone, function (e) {
+        if (!(e && e.name === 'AbortError')) copyText($('set-copy'), code, 'Copiar respaldo');
+      });
+    } catch (e) { copyText($('set-copy'), code, 'Copiar respaldo'); }
+  }
+  function examTs() { return new Date(prefs().exam + 'T00:00:00').getTime(); }
+  function daysLeft() { return Math.round((C.dayStart(examTs()) - C.dayStart(Date.now())) / C.DAY); }
+  var MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  var WEEKDAYS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  function longDate(ts) { var d = new Date(ts); return WEEKDAYS[d.getDay()] + ' ' + d.getDate() + ' de ' + MONTHS[d.getMonth()]; }
+  // days in a row with at least one answer; still alive before today's first answer
+  function streak() {
+    var ts = Date.now(), today = state.days[C.dayKey(ts)] || 0, n = 0, d = today ? ts : C.addDays(ts, -1);
+    while (state.days[C.dayKey(d)] && n < 1000) { n++; d = C.addDays(d, -1); }
+    return { n: n, today: today };
+  }
+  // every answer given in a round feeds the spaced review and today's count
+  function recordAnswer(qi, ok) {
+    var ts = Date.now(), prev = state.srs[qi] || null, next = C.srsApply(prev, ok, ts);
+    state.srs[qi] = next; dirty.srs[qi] = 1;
+    var dk = C.dayKey(ts); state.days[dk] = (state.days[dk] || 0) + 1; dirty.days[dk] = 1;
+    return { qi: qi, prev: prev, next: next, ts: ts, ok: ok, lucky: false };
+  }
+  function masteredIn(pool) { var n = 0; pool.forEach(function (qi) { var r = state.srs[qi]; if (r && r[0] >= 3) n++; }); return n; }
+  // a round under way; today's session only counts on the day it was made (its answers are saved anyway).
+  // One dated later than now (the phone's clock went back) is still the one he was doing.
+  function liveRound(id) {
+    var r = state.rounds[id], ts = Date.now();
+    if (!(r && r.pos < r.order.length && C.answeredCount(r) > 0)) return null;
+    return id === 'hoy' && C.dayKey(r.t0) !== C.dayKey(ts) && r.t0 < ts ? null : r;
+  }
+  function joinY(parts) { return parts.length < 2 ? parts.join('') : parts.slice(0, -1).join(', ') + ' y ' + parts[parts.length - 1]; }
+  function cap(t) { return t.charAt(0).toUpperCase() + t.slice(1); }
+  // progress bar: dominated, on their way, to review, and the line of the goal
+  function barHtml(s, cls) {
+    var w = function (x) { return (s.n ? x / s.n * 100 : 0).toFixed(2) + '%'; };
+    return '<span class="pbar ' + (cls || '') + '" role="img" aria-label="' + s.done + ' dominadas, ' + s.way + ' en camino y ' + s.rev + ' por repasar, de ' + s.n + '">' +
+      '<span class="pfill"><i class="b-done" style="width:' + w(s.done) + '"></i><i class="b-way" style="width:' + w(s.way) + '"></i><i class="b-rev" style="width:' + w(s.rev) + '"></i></span>' +
+      '<b class="tick" style="left:' + C.GOAL * 100 + '%"></b></span>';
+  }
+  // the states of a set of questions, in words, leaving out what is zero
+  function statesTxt(s) {
+    var p = [];
+    if (s.rev) p.push(s.rev + ' por repasar');
+    if (s.way) p.push(s.way + ' en camino');
+    return p.join(' · ');
+  }
+
+  // ---------------------------------------------------------------- home
+  var homeMsg = '';
+  app.pendingMsg = '';
+  var SEC_NAMES = { d: 'Sección disciplinar', l: 'Lenguaje y comunicación' };
+  // quiet: refresh what's listed (another tab saved) without scrolling, re-arming the tap guard or dropping the message
+  function renderHome(message, quiet) {
+    if (!quiet) { adopt(readStored()); homeMsg = message || app.pendingMsg || ''; app.pendingMsg = ''; app.simFocus = null; }
+    var act = document.activeElement, focusKey = quiet && act && act !== document.body ? (act.dataset && (act.dataset.area || act.dataset.sec)) || act.id : null;
+    var notes = [];
+    if (homeMsg) notes.push(homeMsg);
+    if (!storageOk) notes.push('El avance no se está guardando en este navegador. Puede ser el modo privado o falta de espacio.');
+    $('home-msg').hidden = !notes.length;
+    $('home-msg').textContent = notes.join(' ');
+
+    var left = daysLeft(), st = streak();
+    $('home-kicker').textContent = 'EGEL Plus COMUNICA · ' + longDate(examTs());
+    $('home-count').textContent = left > 1 ? 'Faltan ' + left + ' días' : left === 1 ? 'Mañana es tu examen' : left === 0 ? 'Hoy es tu examen' : 'Tu examen ya pasó';
+    $('home-sub').textContent = left < 0 ? 'Si tienes otra fecha, cámbiala en Ajustes.' :
+      (st.today ? 'Hoy llevas ' + plural(st.today, 'respuesta', 'respuestas') : 'Hoy todavía no practicas') + (st.n >= 2 ? ' · ' + st.n + ' días seguidos' : '');
+    renderToday();
+    renderBackupNudge();
+
+    var ts = Date.now(), html = '', totDone = 0, lastSec = '';
+    var order = C.AREAS.slice().sort(function (x, y) { return (y.bank > 0) - (x.bank > 0); }); // exam order, empty areas last
+    order.forEach(function (a) {
+      if (a.sec !== lastSec) { lastSec = a.sec; html += '<div class="area-sec">' + SEC_NAMES[a.sec] + '</div>'; }
+      if (!a.bank) {
+        html += '<div class="area-row soon"><span class="ar-main"><span class="ar-top"><span class="ar-name">' + esc(a.name) + '</span><span class="ar-num">Próximamente</span></span>' +
+          '<span class="ar-meta">' + a.n + ' preguntas en el examen real</span></span></div>';
+        return;
+      }
+      var s = C.poolStats(C.section(a.id).pool, state.srs, ts), r = liveRound(a.id), meta = [];
+      totDone += s.done;
+      if (statesTxt(s)) meta.push(statesTxt(s));
+      if (s.due) meta.push('<span class="due">' + s.due + (s.due === 1 ? ' toca hoy' : ' tocan hoy') + '</span>');
+      if (r) meta.push('vas en la ' + (r.pos + 1) + ' de ' + r.order.length);
+      if (liveRound('sim-' + a.id)) meta.push('simulacro en pausa');
+      html += '<button class="area-row" data-area="' + a.id + '">' +
+        '<span class="ar-main"><span class="ar-top"><span class="ar-name">' + esc(a.name) + '</span><span class="ar-num tnum">' + s.done + ' de ' + s.n + '</span></span>' +
+        barHtml(s, '') + (meta.length ? '<span class="ar-meta tnum">' + meta.join(' · ') + '</span>' : '') + '</span>' +
+        '<span class="ar-go" aria-hidden="true">›</span></button>';
+    });
+    $('area-list').innerHTML = html;
+    $('home-total').textContent = 'Dominadas: ' + totDone + ' de ' + C.Q.length;
+    var all = liveRound('all');
+    $('all-name').textContent = 'Ronda con las ' + C.Q.length + ' mezcladas';
+    $('browse-name').textContent = 'Ver las ' + C.Q.length + ' con su guía';
+    $('all-meta').textContent = all ? 'Continuar: vas en la ' + (all.pos + 1) + ' de ' + all.order.length : lastTxt('all') || 'Todas las áreas en un orden al azar';
+    var sp = simPick(ts), sa = sp.a, sn = C.section(sa.id).pool.length;
+    $('btn-sim').dataset.goarea = sa.id;
+    // one a week is enough: after a recent one, the next is only named
+    var lastSim = lastSimTs(ts);
+    $('sim-meta').textContent = sp.r ? 'En pausa: ' + sa.name + ', vas en la ' + (sp.r.pos + 1) + ' de ' + sp.r.order.length :
+      lastSim && ts - lastSim < 6 * C.DAY ? 'Ya hiciste uno esta semana. El siguiente: ' + sa.name + '.' :
+      'Te toca ' + sa.name + ': ' + sn + ' preguntas en ' + sa.mins + ' minutos';
+    if (!quiet || app.screen !== 'scr-home') { show('scr-home'); return; }
+    if (focusKey) {
+      var el = document.querySelector('[data-area="' + focusKey + '"]') || document.querySelector('#today-box [data-sec="' + focusKey + '"]') || $(focusKey);
+      if (el) try { el.focus({ preventScroll: true }); } catch (e) {}
+    }
+  }
+  function lastSimTs(ts) {
+    var t = 0;
+    C.SECTIONS.forEach(function (sec) { var l = sec.sim && state.last[sec.id]; if (l && l.t > t && l.t <= ts) t = l.t; });
+    return t;
+  }
+  // the simulacro to suggest: one in pause, or the area that needs it most among those without one
+  // in the last six days (the shortest first when they are even, as on the first day)
+  function simPick(ts) {
+    var live = null, best = null, bk = null;
+    var both = liveRound('sim-len');
+    if (both) live = { a: { id: 'lec', name: 'Lenguaje completo', mins: Math.round(C.section('sim-len').lim / 60000) }, r: both };
+    C.LIVE.forEach(function (a) {
+      var r = liveRound('sim-' + a.id);
+      if (r && (!live || r.t0 > live.r.t0)) live = { a: a, r: r };
+      var ls = state.last['sim-' + a.id], recent = ls && ls.t && ts - ls.t < 6 * C.DAY ? 1 : 0;
+      var s = C.poolStats(C.section(a.id).pool, state.srs, ts), need = 1 - (s.done + 0.6 * s.way + 0.3 * s.rev) / s.n;
+      var k = [recent, -need, a.mins];
+      if (!bk || k[0] < bk[0] || (k[0] === bk[0] && (k[1] < bk[1] - 1e-9 || (Math.abs(k[1] - bk[1]) <= 1e-9 && k[2] < bk[2])))) { best = a; bk = k; }
+    });
+    return live || { a: best, r: null };
+  }
+  function scoreTxt(c, n) { return C.pct(c, n) + ' % · ' + c + ' de ' + n + ' correctas'; }
+  function lastTxt(id) {
+    var l = state.last[id];
+    if (!l || !l.n) return '';
+    var t = 'Última ronda' + (l.total > l.n ? ' incompleta' : '') + ': ';
+    if (id === 'all' && l.areas) t += l.ok + ' de ' + l.areas + (l.areas === 1 ? ' área en la meta' : ' áreas en la meta');
+    else t += scoreTxt(l.c, l.n);
+    return t;
+  }
+  // Progress lives only in this browser: once a week, after a few days of practice, a reminder to
+  // keep a backup (the phone's share sheet sends it to his notes or to himself). "Ahora no" waits a week.
+  function renderBackupNudge() {
+    var box = $('bk-box'), p = prefs(), ts = Date.now(), nag = 0;
+    try { nag = +localStorage.getItem(NAG_KEY) || 0; } catch (e) {}
+    var show = storageOk && Object.keys(state.days).length >= 3 && Object.keys(state.srs).length >= 30 &&
+      !(p.bk && ts - p.bk < 7 * C.DAY) && !(nag && ts - nag < 7 * C.DAY && nag <= ts);
+    box.hidden = !show;
+    if (show) box.innerHTML = '<p>Tu avance solo está guardado en este navegador. Guarda un respaldo cada semana.</p>' +
+      '<div class="row"><button class="btn ghost" id="bk-save">Guardar respaldo</button><button class="link plain" id="bk-later">Ahora no</button></div>';
+  }
+  function backupFromHome() {
+    var code = backupCode(), box = $('bk-box');
+    var done = function (msg) { backupDone(); box.innerHTML = '<p>' + msg + '</p>'; };
+    var copy = function () {
+      try { navigator.clipboard.writeText(code).then(function () { done('Listo, se copió. Pégalo en tus notas o mándatelo por WhatsApp para tenerlo a salvo.'); }, function () { renderSettings(); }); }
+      catch (e) { renderSettings(); }
+    };
+    try {
+      if (navigator.share) {
+        navigator.share({ title: 'Respaldo de Práctica EGEL', text: code }).then(function () { done('Listo, guardaste tu respaldo.'); }, function (e) { if (!(e && e.name === 'AbortError')) copy(); });
+        return;
+      }
+    } catch (e) {}
+    copy();
+  }
+  // what today's session will hold, told before it starts
+  function sessionMix(s, size) {
+    if (!s.seen) return 'Empieza aquí: preguntas de todas las áreas para ver cómo vas.';
+    var dueN = Math.min(s.due, s.fresh ? Math.max(0, size - Math.min(Math.ceil(size / 2), s.fresh)) : size), freshN = Math.min(s.fresh, size - dueN), parts = [];
+    if (dueN) parts.push(dueN < s.due ? dueN + ' de las ' + s.due + ' que tocan repaso' : dueN + ' para repasar');
+    if (freshN) parts.push(plural(freshN, 'nueva', 'nuevas'));
+    if (size - dueN - freshN > 0) parts.push((size - dueN - freshN) + ' de refuerzo');
+    return cap(joinY(parts)) + ', de varias áreas.';
+  }
+  function dotsHtml(n, filled) {
+    var h = '';
+    for (var i = 0; i < n; i++) h += '<i' + (i < filled ? ' class="f"' : '') + '></i>';
+    return '<span class="tdots" aria-hidden="true">' + h + '</span>';
+  }
+  // the last seven days, today last: a filled dot for each day he practiced
+  function weekHtml() {
+    var h = '', ts = Date.now(), first = Object.keys(state.days).sort()[0] || C.dayKey(ts);
+    for (var k = 6; k >= 0; k--) {
+      var d = C.addDays(ts, -k), dk = C.dayKey(d), on = !!state.days[dk];
+      h += '<span class="' + (on ? 'on' : dk < first ? 'pre' : '') + (k === 0 ? ' now' : '') + '"><i></i>' + 'DLMMJVS'.charAt(new Date(d).getDay()) + '</span>';
+    }
+    return '<div class="week" aria-label="Días que practicaste esta semana">' + h + '</div>';
+  }
+  function renderToday() {
+    var r = liveRound('hoy'), size = prefs().size, ts = Date.now(), l = state.last.hoy, h, cls = 'today';
+    var s = C.poolStats(C.ALL_POOL, state.srs, ts);
+    if (r) {
+      h = '<span class="today-k">Sesión de hoy</span><h2 class="tnum">Vas en la ' + (r.pos + 1) + ' de ' + r.order.length + '</h2>' +
+        dotsHtml(r.order.length, C.answeredCount(r)) + '<button class="btn block" data-sec="hoy">Continuar</button>';
+    } else if (l && l.t && C.dayKey(l.t) === C.dayKey(ts) && l.n >= l.total) {
+      // tomorrow: what will be due by then, and the new ones that fit
+      var due2 = 0, end = C.addDays(ts, 2);
+      Object.keys(state.srs).forEach(function (k) { if (state.srs[k][1] < end) due2++; });
+      var mix = sessionMix({ seen: s.seen, due: due2, fresh: s.fresh }, size);
+      cls += ' done';
+      // the weekly simulacro, once he has a few days of practice and none in the last week
+      var lastSim = lastSimTs(ts), simLine = '', sp = simPick(ts);
+      if (sp.r) simLine = '<button class="link" data-gosim="' + sp.a.id + '">Tienes un simulacro en pausa: ' + esc(sp.a.name) + '</button>';
+      else if (Object.keys(state.days).length >= 3 && !(lastSim && ts - lastSim < 7 * C.DAY)) simLine = '<button class="link" data-gosim="' + sp.a.id + '">Esta semana toca un simulacro: ' + esc(sp.a.name) + ', ' + sp.a.mins + ' min</button>';
+      h = '<div class="done-row"><span class="ring" aria-hidden="true">✓</span><div><span class="today-k">Sesión de hoy lista</span><h2 class="tnum">' + l.c + ' de ' + l.n + ' bien</h2></div></div>' +
+        weekHtml() + '<p>Mañana: ' + mix.replace(/, de varias áreas\.$/, '.').replace(/^./, function (c) { return c.toLowerCase(); }) + '</p>' +
+        simLine + '<button class="link" data-sec="hoy" data-fresh="1">Otra tanda de ' + size + '</button>';
+    } else {
+      h = '<span class="today-k">Sesión de hoy · unos ' + size + ' minutos</span><h2 class="tnum">' + size + ' preguntas</h2>' +
+        '<p>' + sessionMix(s, size) + '</p>' + dotsHtml(size, 0) + '<button class="btn block" data-sec="hoy" data-fresh="1">Empezar</button>';
+    }
+    $('today-box').innerHTML = '<div class="' + cls + '">' + h + '</div>';
+  }
+
+  // ---------------------------------------------------------------- one area
+  function areaOf(id) { for (var i = 0; i < C.AREAS.length; i++) if (C.AREAS[i].id === id) return C.AREAS[i]; return null; }
+  function renderArea(id) {
+    var a = areaOf(id);
+    if (!a || !a.bank) { renderHome(); return; }
+    if (app.screen !== 'scr-area') adopt(readStored());
+    app.areaId = id;
+    var sec = C.section(id), ts = Date.now(), s = C.poolStats(sec.pool, state.srs, ts), need = Math.ceil(C.GOAL * s.n - 1e-9);
+    $('a-title').textContent = a.name; $('a-name').textContent = a.name;
+    $('a-kicker').textContent = SEC_NAMES[a.sec] + ' · ' + s.n + ' preguntas para practicar';
+    $('a-big').innerHTML = s.done + '<small>de ' + s.n + ' dominadas</small>';
+    $('a-bar').innerHTML = barHtml(s, 'lg');
+    var goal = s.done >= s.n ? 'Las dominas todas.' : s.done >= need ? 'Ya llegas a la meta del 90 %. Sigue hasta dominarlas todas.' : (need - s.done === 1 ? 'Para la meta del 90 % te falta 1 dominada.' : 'Para la meta del 90 % te faltan ' + (need - s.done) + ' dominadas.');
+    if (s.seen >= 5) goal += ' Al primer intento sacaste bien el ' + Math.round(s.first / s.seen * 100) + ' %.';
+    if (statesTxt(s)) goal = cap(statesTxt(s)) + '. ' + goal;
+    $('a-goal').textContent = goal;
+    var lt = lastTxt(id);
+    $('a-last').textContent = lt ? lt + '.' : ''; $('a-last').hidden = !lt;
+    var r = liveRound(id), pb = $('a-practice'), ps = $('a-practice-sub');
+    pb.dataset.sec = id;
+    pb.textContent = r ? 'Continuar · vas en la ' + (r.pos + 1) + ' de ' + r.order.length : 'Practicar';
+    ps.textContent = r ? '' : s.due ? (s.due === 1 ? 'Empieza por la que toca repaso' : 'Empieza por las ' + s.due + ' que tocan repaso') :
+      s.fresh && s.seen ? 'Empieza por las ' + s.fresh + ' que no has visto' : s.fresh ? 'Todas en orden al azar, con guía en cada una' : 'Repasa las ' + s.n + ', primero las más flojas';
+    ps.hidden = !ps.textContent;
+    var sim = liveRound('sim-' + id), sb = $('a-sim'), ls = state.last['sim-' + id], lim = C.section('sim-' + id).lim;
+    sb.dataset.sec = 'sim-' + id;
+    sb.textContent = sim ? 'Seguir el simulacro' : 'Simulacro de ' + a.mins + ' minutos';
+    var simFirst = !!sim || app.simFocus === id;
+    pb.className = simFirst ? 'btn ghost block' : 'btn block';
+    sb.className = simFirst ? 'btn block' : 'btn ghost block';
+    $('a-sim-sub').textContent = sim ? 'Vas en la ' + (sim.pos + 1) + ' de ' + sim.order.length + ' y quedan ' + fmtMin(lim - sim.spent) + '. El reloj se para si sales.' :
+      (ls ? 'Último: ' + C.pct(ls.c, ls.total) + ' %, ' + ls.c + ' de ' + ls.total + '. ' : '') + 'Las ' + s.n + ' en orden, al ritmo del examen real. Ves las respuestas al entregar.';
+    // the two language areas also have a simulacro together, as the second session of the exam ends
+    var both = C.section('sim-len'), bl = $('a-sim2');
+    bl.hidden = a.sec !== 'l' || both.pool.length === sec.pool.length;
+    if (!bl.hidden) { var lb = liveRound('sim-len'); bl.textContent = lb ? 'Seguir el simulacro de Lenguaje completo' : 'Simulacro de Lenguaje completo: ' + both.pool.length + ' preguntas en ' + Math.round(both.lim / 60000) + ' minutos'; }
+    var h = '';
+    sec.pool.forEach(function (qi, k) {
+      var q = C.byId[qi], rec = state.srs[qi], stt = C.srsState(rec), due = stt !== 'new' && C.isDue(rec, ts);
+      var cls = (stt === 'new' ? '' : stt) + (due ? ' due' : '');
+      var lbl = 'Pregunta ' + q.n + ', ' + ({ done: 'dominada', way: 'en camino', rev: 'por repasar', new: 'sin ver' })[stt] + (due ? ', toca repaso hoy' : '');
+      h += '<button class="sb ' + cls + '" data-q="' + k + '" aria-label="' + lbl + '">' + q.n + '</button>';
+    });
+    $('a-sheet').innerHTML = h;
+    app.areaTs = ts;
+    if (app.screen !== 'scr-area') show('scr-area');
+  }
+
+  // ---------------------------------------------------------------- settings, backup and reset
+  function renderSettings() {
+    var p = prefs();
+    $('set-date').value = p.exam;
+    $('set-share').hidden = !(navigator.share);
+    $('set-last').textContent = 'Último respaldo: ' + (p.bk ? (C.dayKey(p.bk) === C.dayKey(Date.now()) ? 'hoy' : 'el ' + new Date(p.bk).getDate() + ' de ' + MONTHS[new Date(p.bk).getMonth()]) : 'nunca') + '.';
+    Array.prototype.forEach.call(document.querySelectorAll('#set-size button'), function (b) { b.setAttribute('aria-pressed', String(+b.dataset.size === p.size)); });
+    Array.prototype.forEach.call(document.querySelectorAll('#set-fs button'), function (b) { b.setAttribute('aria-pressed', String(+b.dataset.fs === getFs())); });
+    setMsg('');
+    $('set-paste').value = '';
+    disarm($('set-reset'), 'Borrar mi avance');
+    show('scr-set');
+  }
+  function setMsg(t, good) { var m = $('set-msg'); m.hidden = !t; m.textContent = t; m.className = 'small ' + (good ? 'ok-msg' : t ? 'err-msg' : ''); }
+  $('set-date').addEventListener('change', function () {
+    var v = this.value;
+    if (validDate(v)) setPrefs({ exam: v, size: prefs().size }); else this.value = prefs().exam;
+  });
+  function b64(s) { return btoa(unescape(encodeURIComponent(s))); }
+  function unb64(s) { return decodeURIComponent(escape(atob(s))); }
+  function backupCode() {
+    return 'EGELCOM1.' + b64(JSON.stringify({ v: 1, t: Date.now(), srs: state.srs, days: state.days, prefs: state.prefs, last: state.last }));
+  }
+  // merged with what is here: for each question the most recent answer wins, so nothing newer is lost
+  function restoreCode(txt) {
+    var m = String(txt || '').replace(/\s+/g, '').match(/EGELCOM1\.([A-Za-z0-9+/=]+)/);
+    if (!m) return 'No reconozco ese respaldo. Pega el texto completo, empieza con EGELCOM1.';
+    var data;
+    try { data = JSON.parse(unb64(m[1])); } catch (e) { return 'Ese respaldo está incompleto o dañado.'; }
+    if (!data || data.v !== 1) return 'Ese respaldo no es de esta app.';
+    var cl = cleanState({ v: 1, srs: data.srs, days: data.days, prefs: data.prefs, last: data.last });
+    var n = Object.keys(cl.srs).length;
+    if (!n && !Object.keys(cl.days).length) return 'Ese respaldo no trae avance.';
+    if (state.resetAt) { state.resetAt = 0; dirty.unreset = true; }
+    Object.keys(cl.srs).forEach(function (k) { var st = state.srs[k]; if (!st || st[2] < cl.srs[k][2]) { state.srs[k] = cl.srs[k]; dirty.srs[k] = 1; } });
+    Object.keys(cl.days).forEach(function (k) { if ((state.days[k] || 0) < cl.days[k]) { state.days[k] = cl.days[k]; dirty.days[k] = 1; } });
+    Object.keys(cl.last).forEach(function (k) { var st = state.last[k], o = cl.last[k]; if (!st || (st.t0 || st.t || 0) < (o.t0 || o.t || 0)) { state.last[k] = o; dirty.last[k] = 1; } });
+    if (cl.prefs && (!state.prefs || state.prefs.t < cl.prefs.t)) { state.prefs = cl.prefs; dirty.prefs = true; }
+    if (!saveState()) return 'No se pudo guardar en este navegador.';
+    return '';
+  }
+  function resetProgress() {
+    state.resetAt = Date.now(); state.srs = {}; state.days = {};
+    Object.keys(state.rounds).forEach(function (k) { delete state.rounds[k]; });
+    Object.keys(state.last).forEach(function (k) { delete state.last[k]; });
+    app.round = null; app.summary = null; app.lastAns = null;
+    writeView(null);
+    return saveState();
+  }
+  function copyText(btn, text, label) {
+    var done = function () { btn.textContent = 'Copiado'; clearTimeout(btn._t); btn._t = setTimeout(function () { btn.textContent = label; }, 2000); backupDone(); };
+    var fallback = function () {
+      var ta = $('set-paste'); ta.value = text;
+      try { ta.focus(); ta.select(); if (document.execCommand && document.execCommand('copy')) { done(); return; } } catch (e) {}
+      setMsg('Mantén presionado el texto de abajo para copiarlo.');
+    };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  }
+
+  // ---------------------------------------------------------------- the back gesture
+  // Screens below the start add one history entry, so the phone's back gesture goes up one level
+  // instead of leaving the app. Only our own entry is ever stepped back over: the history is
+  // shared with the page around the app.
+  app.navLen = -1; app.expectPop = -1e9; app.navBusyUntil = -1e9;
+  function navOn() { try { return !!(history.state && history.state.egelNav) && history.length === app.navLen; } catch (e) { return false; } }
+  function navSync(id) {
+    // while one of our own steps back is on its way nothing else is done: two quick screen changes
+    // must never step back twice; the step's arrival syncs again (see the popstate handler)
+    if (now() < app.navBusyUntil) return;
+    var top = id === 'scr-home';
+    try {
+      if (!top && !(history.state && history.state.egelNav)) { history.pushState({ egelNav: 1 }, ''); app.navLen = history.length; }
+      else if (top && navOn()) { app.expectPop = app.navBusyUntil = now(); app.navBusyUntil += 1500; history.back(); }
+    } catch (e) {}
+  }
+  function goUp() {
+    if (app.screen === 'scr-quiz') leaveQuiz();
+    else if (app.screen === 'scr-sum') { writeView(null); renderHome(); }
+    else if (app.screen === 'scr-area' || app.screen === 'scr-set' || app.screen === 'scr-method') renderHome();
+  }
+
+  // ---------------------------------------------------------------- simulacro clock
+  // Counts only while the simulacro is on screen, and is saved every 15 seconds and whenever it stops.
+  var sim = { h: 0, last: 0, saved: 0 };
+  function isSim() { var r = app.round; return app.mode === 'quiz' && !!r && !!C.section(r.sec).sim; }
+  function fmtClock(ms) { var t = Math.max(0, Math.ceil(ms / 1000)), m = Math.floor(t / 60), s = t % 60; return m + ':' + ('0' + s).slice(-2); }
+  function fmtMin(ms) { var m = Math.floor(ms / 60000); return m < 1 ? 'menos de un minuto' : plural(m, 'minuto', 'minutos'); }
+  function simAdd() {
+    var r = app.round, t = now();
+    if (isSim() && sim.last && document.visibilityState !== 'hidden') r.spent = Math.min(r.spent + Math.min(t - sim.last, 5000), C.section(r.sec).lim);
+    sim.last = isSim() && document.visibilityState !== 'hidden' && app.screen === 'scr-quiz' ? t : 0;
+  }
+  function startSim() { stopSim(true); sim.saved = now(); sim.last = now(); sim.h = setInterval(simTick, 1000); simTick(); }
+  function stopSim(quiet) {
+    if (sim.h) { clearInterval(sim.h); sim.h = 0; }
+    // saved only while it is still the round on record (a round just thrown away stays away)
+    if (isSim()) { simAdd(); if (!quiet && state.rounds[app.round.sec] === app.round) { setRound(app.round.sec, app.round); saveState(); } }
+    sim.last = 0;
+  }
+  function simTick() {
+    if (!isSim() || app.screen !== 'scr-quiz') { if (sim.h) { clearInterval(sim.h); sim.h = 0; } sim.last = 0; return; }
+    simAdd();
+    var r = app.round, lim = C.section(r.sec).lim, left = lim - r.spent, el = $('q-timer');
+    el.textContent = fmtClock(left);
+    el.setAttribute('aria-label', 'Quedan ' + fmtMin(left));
+    el.classList.toggle('low', left < 5 * 60000);
+    if (left <= 0) { finishRound({ timeUp: true }); return; }
+    if (now() - sim.saved > 15000) { sim.saved = now(); setRound(r.sec, r); saveState(); }
+  }
+  document.addEventListener('visibilitychange', function () {
+    if (!isSim() || app.screen !== 'scr-quiz') return;
+    simAdd();
+    if (document.visibilityState === 'hidden') { setRound(app.round.sec, app.round); saveState(); }
+  });
+
+  // ---------------------------------------------------------------- rounds
+  function startSection(id, fresh) {
+    adopt(readStored()); // pick up what another tab (or this page before it was frozen) saved
+    var sec = C.section(id);
+    if (!sec || !sec.pool.length) return;
+    var r = state.rounds[id], live = !!liveRound(id);
+    // "Nueva ronda" never throws away a newer round that is being played in another tab,
+    // and an unfinished simulacro is always continued, never restarted by accident
+    if (fresh && live && app.summary && app.summary.sec === id && r.t0 > (app.summary.t0 || 0)) fresh = false;
+    if (sec.sim && live) fresh = false;
+    if (fresh || !live) {
+      var prev = Math.max((state.last[id] && state.last[id].t0) || 0, (r && r.t0) || 0), ts = Date.now(), order = null;
+      if (sec.sub) order = C.buildSession(state.srs, ts, prefs().size);
+      else if (sec.sim) order = sec.pool.slice(); // like the booklet: in order, support texts with their questions
+      else if (sec.area !== undefined) order = C.practiceOrder(sec.pool, state.srs, ts);
+      r = C.newRound(id, order);
+      if (r.t0 <= prev) r.t0 = prev + 1; // a phone clock set back must not make the new round look older
+      r.m0 = masteredIn(sec.pool);
+      setRound(id, r);
+    }
+    app.round = r; app.mode = 'quiz'; app.lastAns = null;
+    writeView(null);
+    show('scr-quiz');
+    saveState();
+    renderQuestion();
+    if (sec.sim) startSim();
+  }
+  function curQi() {
+    if (app.mode === 'quiz') return app.round.order[app.round.pos];
+    return app.review.list[app.review.pos];
+  }
+
+  // ---------------------------------------------------------------- question screen
+  // Text from the bank: escaped, then a blank line starts a paragraph, a line break stays one, and
+  // **words** are set in bold and *titles* in italics.
+  function fmt(t) {
+    return String(t || '').split(/\n\s*\n/).map(function (p) {
+      return '<p>' + fmtInline(p.trim()) + '</p>';
+    }).join('');
+  }
+  // **bold** and *italics* (titles of works)
+  function fmtInline(t) { return esc(String(t || '')).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>').replace(/\*([^*]+)\*/g, '<i>$1</i>').replace(/\n/g, '<br>'); }
+  function ctxRange(c) {
+    var a = c.qs[0], b = c.qs[c.qs.length - 1];
+    return c.qs.length === 1 ? 'la pregunta ' + a : 'las preguntas ' + a + (c.qs.length === 2 ? ' y ' : ' a ') + b;
+  }
+  function renderQuestion() {
+    disarm($('q-end'), endLabel());
+    var qi = curQi(), q = C.byId[qi], area = C.AREAS[q.a];
+    var r = app.round, mode = app.mode;
+    // the double-tap guard starts only when a different question appears: drawing the same one
+    // again (the phone turned, the window changed size) must not swallow the next tap
+    var shownKey = mode + ':' + qi + ':' + (mode === 'quiz' && r ? r.t0 + ':' + r.pos : (app.review ? app.review.pos : ''));
+    var fresh = shownKey !== app.shownKey;
+    if (fresh) {
+      app.shownAt = now(); app.shownKey = shownKey;
+      app.shownWall = Date.now(); // "due today" is decided when the question appears, so it never flips while on screen
+      // a question newly shown starts with its guide closed and freshly built
+      app.guide = { open: null, built: -1, twin: -1 };
+      $('q-guide').hidden = true; $('q-guide-body').innerHTML = '';
+    }
+    var simMode = isSim();
+    $('scr-quiz').classList.toggle('quizmode', mode === 'quiz');
+    $('scr-quiz').classList.toggle('simmode', simMode);
+    $('q-timer').hidden = !simMode;
+    if (mode === 'quiz') {
+      var sec = C.section(r.sec);
+      // today's session has no "Terminar": going back pauses it for the rest of the day
+      $('q-back').textContent = simMode ? 'Pausar' : sec.area !== undefined ? '← Volver' : '← Inicio';
+      $('q-end').hidden = !!sec.sub;
+      $('q-end').textContent = endLabel();
+      $('q-title').textContent = sec.name;
+      $('q-count').textContent = simMode ? (r.pos + 1) + '/' + r.order.length : (r.pos + 1) + ' de ' + r.order.length;
+      $('q-bar').style.width = (simMode ? C.answeredCount(r) : r.pos) / r.order.length * 100 + '%';
+      if (simMode) $('q-timer').textContent = fmtClock(sec.lim - r.spent);
+    } else {
+      var rv = app.review;
+      $('q-back').textContent = mode === 'review' ? '← Resultado' : '← Volver';
+      $('q-end').hidden = true;
+      $('q-title').textContent = mode === 'review' ? 'Repaso de incorrectas' : rv.origin === 'area' ? area.name + ' en orden' : 'Todas en orden';
+      $('q-count').textContent = (rv.pos + 1) + ' de ' + rv.list.length;
+      $('q-bar').style.width = ((rv.pos + 1) / rv.list.length * 100) + '%';
+    }
+    $('q-meta').innerHTML = '<b>' + esc(area.name) + '</b> · pregunta ' + q.n;
+    // where this question stands in the review, as it was before answering it now
+    var tag = $('q-tag'), rec = app.lastAns && app.lastAns.qi === qi && mode === 'quiz' ? app.lastAns.prev : state.srs[qi];
+    tag.hidden = mode !== 'quiz' || simMode;
+    if (!tag.hidden) {
+      var stt = C.srsState(rec);
+      tag.className = 'qtag ' + (stt === 'new' ? 'new' : stt === 'done' ? 'done' : C.isDue(rec, Date.now()) ? 'rev' : '');
+      tag.textContent = stt === 'new' ? 'Nueva' : stt === 'done' ? 'Dominada' : C.isDue(rec, Date.now()) ? 'Repaso' : 'Ya la viste';
+    }
+    // the support text: open the first time it appears, then as he left it
+    var box = $('q-ctx-box');
+    box.hidden = q.ctx < 0;
+    $('q-label').hidden = q.ctx < 0;
+    if (q.ctx >= 0) {
+      var c = C.CTX[q.ctx];
+      if (fresh) {
+        if (app.ctxOpen[c.id] === undefined) app.ctxOpen[c.id] = true;
+        $('q-ctx-k').textContent = 'Texto de apoyo para ' + ctxRange(c);
+        $('q-ctx-t').textContent = c.t;
+        $('q-ctx-body').innerHTML = fmt(c.b) + (c.src ? '<p class="ctx-src">' + esc(c.src) + '</p>' : '');
+      }
+      syncCtx(c);
+      $('q-label').textContent = 'Pregunta ' + q.n;
+    }
+    if (fresh) {
+      $('q-text').innerHTML = fmt(q.q);
+      $('q-opts').innerHTML = q.o.map(function (o, i) {
+        return '<button class="opt" data-c="' + i + '"><span class="ol">' + LETTERS[i] + '</span><span class="ot">' + fmtInline(o) + '</span></button>';
+      }).join('');
+    }
+    renderAnswerState();
+  }
+  function syncCtx(c) {
+    var open = !!app.ctxOpen[c.id];
+    $('q-ctx-btn').setAttribute('aria-expanded', String(open));
+    $('q-ctx-body').hidden = !open;
+    $('q-ctx-act').textContent = open ? 'Ocultar' : 'Leer el texto';
+  }
+  function toggleCtx() {
+    var q = C.byId[curQi()];
+    if (!q || q.ctx < 0) return;
+    var c = C.CTX[q.ctx];
+    app.ctxOpen[c.id] = !app.ctxOpen[c.id];
+    syncCtx(c);
+    if (!app.ctxOpen[c.id]) try { $('q-ctx-box').scrollIntoView({ block: 'nearest' }); } catch (e) {}
+  }
+  function verdictHtml(q, chosen, key, mastered) {
+    if (chosen === key) return '✓ Correcto' + (mastered ? ' <span class="nw">· Dominada</span>' : '');
+    if (chosen === -1) return 'Era la ' + LETTERS[key];
+    return '✗ Era la ' + LETTERS[key];
+  }
+  function reviewHtml(q, chosen, key) {
+    var lead = chosen === undefined ? 'Sin responder' : chosen === -1 ? 'No la sabías' : 'Marcaste la ' + LETTERS[chosen];
+    return lead + ' · <span class="nw">era la ' + LETTERS[key] + '</span>';
+  }
+  function renderAnswerState() {
+    var qi = curQi(), q = C.byId[qi], key = app.keys[qi], simMode = isSim();
+    var chosen = app.mode === 'quiz' ? app.round.ans[qi] : app.review.ans[qi];
+    // in the review of a simulacro, a question left unanswered and never seen can be tried now
+    var tried = app.mode === 'review' && chosen === undefined && app.review.tries && app.review.tries[qi] !== undefined;
+    if (tried) chosen = app.review.tries[qi];
+    // "en orden": a question never seen is answered first (contestar antes de mirar); seen ones show their key
+    var rec0 = state.srs[qi], dueNow = !!rec0 && C.isDue(rec0, app.shownWall || Date.now());
+    var tryMode = (app.mode === 'browse' || app.mode === 'review') && chosen === undefined && (!rec0 || dueNow);
+    // in a simulacro nothing is revealed until the end; in a review even an unanswered one shows its key
+    var revealed = app.mode === 'quiz' ? chosen !== undefined && !simMode : !tryMode;
+    var bubs = $('q-opts').querySelectorAll('.opt');
+    Array.prototype.forEach.call(bubs, function (b) {
+      var c = +b.dataset.c, label = 'Opción ' + LETTERS[c] + ': ' + b.querySelector('.ot').textContent;
+      b.className = 'opt';
+      b.disabled = simMode ? false : revealed || (app.mode !== 'quiz' && !tryMode) || chosen !== undefined;
+      if (simMode && c === chosen) { b.classList.add('sel'); label += ', tu respuesta'; }
+      if (revealed) {
+        if (c === chosen) { b.classList.add(c === key ? 'ok' : 'bad'); label += c === key ? ', tu respuesta, correcta' : ', tu respuesta, incorrecta'; }
+        else if (c === key) { b.classList.add('ans'); label += ', respuesta correcta'; }
+        else b.classList.add('dim');
+      }
+      b.setAttribute('aria-label', label);
+    });
+    if (simMode) {
+      var rr = app.round, left = rr.order.filter(function (x) { return rr.ans[x] === undefined; }), armed = $('q-end').dataset.armed === '1';
+      $('q-fb').hidden = true; $('q-idk').hidden = true; $('q-revnav').hidden = false;
+      $('q-prev').disabled = rr.pos === 0;
+      $('q-rnext').textContent = rr.pos + 1 >= rr.order.length ? 'Entregar' : 'Siguiente →';
+      var st2 = $('q-rev-txt');
+      st2.className = 'txt' + (armed && left.length ? ' bad' : '');
+      var ln = left.slice(0, 6).map(function (x) { return String(C.byId[x].n); });
+      st2.textContent = armed ? (left.length ? 'Te ' + (left.length === 1 ? 'falta 1 por contestar: la ' : 'faltan ' + left.length + ' por contestar: ') + (left.length > 6 ? ln.join(', ') + ' y ' + (left.length - 6) + ' más' : joinY(ln)) : 'Contestaste todas.') :
+        'Contestadas: ' + (rr.order.length - left.length) + ' de ' + rr.order.length;
+    } else if (app.mode === 'quiz') {
+      $('q-revnav').hidden = true;
+      $('q-fb').hidden = simMode;
+      $('q-idk').hidden = revealed || simMode;
+      $('q-fb').classList.toggle('wait', !revealed);
+      $('q-next').disabled = !revealed;
+      if (revealed) {
+        var ok = chosen === key, t = $('q-fb-txt');
+        t.className = 'txt ' + (ok ? 'ok' : chosen === -1 ? '' : 'bad');
+        // the answer that just made it dominated says so
+        var la = app.lastAns, mastered = ok && la && la.qi === qi && !la.lucky && la.next[0] >= 3 && !(la.prev && la.prev[0] >= 3);
+        t.innerHTML = verdictHtml(q, chosen, key, mastered);
+        $('q-next').textContent = app.round.pos + 1 >= app.round.order.length ? 'Ver resultado' : 'Siguiente →';
+      } else $('q-fb-txt').textContent = '';
+    } else {
+      $('q-fb').hidden = true;
+      $('q-revnav').hidden = false;
+      var rv = app.review;
+      $('q-prev').disabled = rv.pos === 0;
+      $('q-rnext').textContent = rv.pos + 1 >= rv.list.length ? (app.mode === 'review' ? 'Ver resultado' : 'Volver') : 'Siguiente →';
+      var tt = $('q-rev-txt');
+      if (app.mode === 'review' && !tried && !tryMode) {
+        tt.className = 'txt bad';
+        tt.innerHTML = reviewHtml(q, chosen, key);
+      }
+      // on a phone held sideways only "No la sé" stays, the bar has no room for the sentence
+      else if (tryMode) { tt.className = 'txt try'; tt.innerHTML = '<span class="try-t">' + (app.mode === 'review' ? 'Sin responder. Inténtala ahora' : rec0 ? 'Toca repaso: contéstala primero' : 'Contéstala para ver su guía') + '</span><span class="nw"><span class="try-t"> · </span><button class="idk" id="q-idk2">No la sé</button></span>'; }
+      else if (chosen !== undefined) { tt.className = 'txt ' + (chosen === key ? 'ok' : chosen === -1 ? '' : 'bad'); tt.innerHTML = verdictHtml(q, chosen, key, false); }
+      else { tt.className = 'txt'; tt.textContent = 'Respuesta: ' + LETTERS[key]; }
+    }
+    syncGuide(q, chosen, revealed && !simMode);
+    syncBarHeight();
+  }
+
+  // ---------------------------------------------------------------- the guide
+  // Opens by itself after a miss and in the review; in "en orden" it remembers how he left it.
+  function guideDefaultOpen(qi, chosen) {
+    if (app.mode === 'review') return true;
+    if (app.mode === 'browse' && chosen === undefined) return app.browseGuide !== false;
+    return chosen !== undefined && chosen !== app.keys[qi];
+  }
+  function buildGuide(q) {
+    var g = q.guide, li = function (x) { return '<li><span>' + fmtInline(x) + '</span></li>'; };
+    var h = '<div class="g-sec"><h3>La idea</h3>' + fmt(g.w) + '</div>' +
+      '<div class="g-sec"><h3>Cómo se resuelve</h3><ol class="g-steps">' + g.s.map(li).join('') + '</ol></div>' +
+      '<div class="g-sec"><h3>Ojo con</h3>' + fmt(g.x) + '</div>' +
+      '<div class="g-rem"><h3>Para recordar</h3>' + fmt(g.m) + '</div>' +
+      '<div class="twin"><h3>Ponte a prueba</h3><p class="twin-sub">Una pregunta nueva sobre lo mismo. Si la sacas, entendiste la idea.</p>' +
+      '<div class="twin-q">' + fmt(g.g.q) + '</div><div class="twin-opts">' +
+      g.g.o.map(function (o, i) { return '<button class="topt" data-t="' + i + '"><span class="tl">' + LETTERS[i] + '</span><span class="tx">' + fmtInline(o) + '</span></button>'; }).join('') +
+      '</div><p class="twin-fb" id="twin-fb" aria-live="polite" hidden></p></div>';
+    $('q-guide-topic').textContent = g.t;
+    $('q-guide-body').innerHTML = h;
+    app.guide.built = q.id; app.guide.twin = -1;
+  }
+  function syncGuide(q, chosen, show) {
+    var box = $('q-guide');
+    if (!show || !q.guide) { box.hidden = true; return; }
+    if (app.guide.built !== q.id) buildGuide(q);
+    if (app.guide.open === null) app.guide.open = guideDefaultOpen(q.id, chosen);
+    box.hidden = false;
+    $('q-guide-btn').setAttribute('aria-expanded', String(!!app.guide.open));
+    $('q-guide-body').hidden = !app.guide.open;
+    // a right answer can still have been a guess: marking it sends the question back for review
+    var la = app.lastAns, lucky = $('q-lucky');
+    lucky.hidden = !(app.mode !== 'quiz' || !isSim()) || !(la && la.qi === q.id && la.ok && chosen === app.keys[q.id]);
+    if (!lucky.hidden) {
+      $('q-lucky-txt').textContent = la.lucky ? 'Volverá mañana para que la repases.' : '¿La acertaste de suerte?';
+      $('q-lucky-btn').setAttribute('aria-pressed', String(la.lucky));
+      $('q-lucky-btn').textContent = la.lucky ? 'Deshacer' : 'La adiviné';
+    }
+  }
+  function toggleGuide() {
+    if ($('q-guide').hidden) return;
+    app.guide.open = !app.guide.open;
+    if (app.mode === 'browse') app.browseGuide = app.guide.open;
+    renderAnswerState();
+    if (app.guide.open) setTimeout(function () { revealAboveBar($('q-guide'), 190); }, 30);
+  }
+  function toggleLucky() {
+    var la = app.lastAns, qi = curQi();
+    if (!la || la.qi !== qi || !la.ok || isSim()) return;
+    la.lucky = !la.lucky;
+    state.srs[qi] = la.lucky ? C.srsApply(la.prev, false, la.ts) : la.next;
+    dirty.srs[qi] = 1;
+    // the round remembers it, so its result can say how many were luck
+    var r = app.mode === 'quiz' && app.round;
+    if (r && r.order.indexOf(qi) >= 0) {
+      r.lk = (Array.isArray(r.lk) ? r.lk : []).filter(function (x) { return x !== qi; });
+      if (la.lucky) r.lk.push(qi);
+      setRound(r.sec, r);
+    }
+    saveState();
+    if (la.lucky) app.guide.open = true;
+    renderAnswerState();
+  }
+  function twinAnswer(i) {
+    var q = C.byId[curQi()], g = q.guide;
+    if (!g || app.guide.twin >= 0 || !(i >= 0 && i <= 2)) return;
+    app.guide.twin = i;
+    var k = g.g.k;
+    Array.prototype.forEach.call($('q-guide-body').querySelectorAll('.topt'), function (b) {
+      var j = +b.dataset.t;
+      b.disabled = true;
+      b.classList.add(j === k ? 'ok' : j === i ? 'bad' : 'dim');
+    });
+    var fb = $('twin-fb');
+    fb.innerHTML = (i === k ? '<b class="ok">✓ Bien.</b> ' : '<b class="bad">✗ Era la ' + LETTERS[k] + '.</b> ') + fmtInline(g.g.e);
+    fb.hidden = false;
+    setTimeout(function () { revealAboveBar(fb); }, 30);
+  }
+  function syncBarHeight() {
+    var h = $('q-answerbar').offsetHeight;
+    if (h) document.documentElement.style.setProperty('--bar-h', h + 'px');
+  }
+  // scrolls just enough for el to clear the sticky answer bar, never pushing its top under the top bar
+  // part: only the first part of el (its first lines) has to come into view, so the question stays on screen
+  function revealAboveBar(el, part) {
+    try {
+      var r = el.getBoundingClientRect(), barTop = $('q-answerbar').getBoundingClientRect().top;
+      var topLimit = document.querySelector('#scr-quiz .topbar').getBoundingClientRect().bottom + 8;
+      var bottom = part ? Math.min(r.bottom, r.top + part) : r.bottom;
+      var dy = bottom - (Math.min(window.innerHeight, barTop) - 8);
+      if (dy > 0) dy = Math.min(dy, r.top - topLimit);
+      if (dy > 0) window.scrollBy(0, dy);
+    } catch (e) {}
+  }
+  function choose(c, fromPointer) {
+    if (app.screen !== 'scr-quiz' || app.mode !== 'quiz' || !app.round) return;
+    if (fromPointer && now() - app.shownAt < 400) return; // second tap of a double tap on "Siguiente"
+    var s = syncActive();
+    if (s === 'moved') { renderQuestion(); return; }
+    if (s !== 'ok') { roundGone(s); return; }
+    var qi = curQi(), r = app.round;
+    if (isSim()) {
+      // like the real exam: the mark can be changed or erased until it is handed in, and only then counts
+      if (c === -1 || !C.mark(r, qi, c)) return;
+      setRound(r.sec, r);
+      saveState();
+      disarm($('q-end'), endLabel());
+      renderAnswerState();
+      buzz(8);
+      return;
+    }
+    if (!C.answer(r, qi, c)) return;
+    app.lastAns = recordAnswer(qi, c === app.keys[qi]);
+    setRound(r.sec, r);
+    saveState();
+    renderAnswerState();
+    pop(c);
+    buzz(c === app.keys[qi] ? 12 : [30, 40, 30]);
+    try { $('q-next').focus({ preventScroll: true }); } catch (e) {}
+    var gb = $('q-guide');
+    if (!gb.hidden && app.guide.open) setTimeout(function () { revealAboveBar(gb, 190); }, 30);
+  }
+  // a question never seen, answered from "en orden": it counts like any first attempt
+  function browseAnswer(c, fromPointer) {
+    if (app.screen !== 'scr-quiz' || (app.mode !== 'browse' && app.mode !== 'review')) return;
+    if (fromPointer && now() - app.shownAt < 400) return;
+    var qi = curQi(), rv = app.review;
+    // in a review the answers on record are the round's: what he tries now is kept apart
+    var box = app.mode === 'review' ? (rv.tries || (rv.tries = {})) : rv.ans;
+    var rec = state.srs[qi];
+    if (rv.ans[qi] !== undefined || box[qi] !== undefined || (rec && !C.isDue(rec, app.shownWall || Date.now())) || !C.isChoice(c, false)) return;
+    box[qi] = c;
+    app.lastAns = recordAnswer(qi, c === app.keys[qi]);
+    saveState();
+    app.guide.open = null;
+    renderAnswerState();
+    pop(c);
+    buzz(c === app.keys[qi] ? 12 : [30, 40, 30]);
+    var gb = $('q-guide');
+    if (!gb.hidden && app.guide.open) setTimeout(function () { revealAboveBar(gb, 190); }, 30);
+  }
+  function next() {
+    if (app.mode !== 'quiz' || !app.round) return;
+    var s = syncActive();
+    if (s === 'moved') { renderQuestion(); return; }
+    if (s !== 'ok') { roundGone(s); return; }
+    var r = app.round, qi = curQi();
+    if (r.ans[qi] === undefined) return;
+    r.pos++;
+    if (r.pos >= r.order.length) { finishRound(); return; } // finishRound saves once; a half-finished copy is never stored
+    setRound(r.sec, r);
+    saveState();
+    renderQuestion();
+    window.scrollTo(0, 0);
+    try { $('q-metarow').focus({ preventScroll: true }); } catch (e) {}
+  }
+  function finishRound(opts) {
+    stopSim(true);
+    var r = app.round, sec = C.section(r.sec), g = C.grade(r, app.keys, !!sec.sim);
+    var seenB = sec.sim ? r.order.filter(function (qi) { return !!state.srs[qi]; }).length : -1;
+    var luck = Array.isArray(r.lk) ? r.lk.filter(function (qi) { return r.ans[qi] === app.keys[qi]; }).length : 0;
+    if (sec.sim) r.order.forEach(function (qi) { if (r.ans[qi] !== undefined) recordAnswer(qi, r.ans[qi] === app.keys[qi]); });
+    if (g.n) {
+      var rec = { c: g.c, n: g.n, total: r.order.length, t: Date.now(), t0: r.t0 };
+      if (r.sec === 'all') { rec.areas = g.by.length; rec.ok = g.by.filter(function (b) { return C.passes(b.c, b.n); }).length; }
+      if (sec.sim) rec.sp = Math.round(r.spent);
+      setLast(r.sec, rec);
+    }
+    setRound(r.sec, null, r.t0);
+    app.round = null; app.lastAns = null;
+    app.summary = { sec: r.sec, g: g, ans: Object.assign({}, r.ans), total: r.order.length, t0: r.t0,
+      m0: isInt(r.m0, 0, C.Q.length) ? r.m0 : -1, sp: r.spent || 0, up: !!(opts && opts.timeUp), ord: sec.sim ? r.order.slice() : null, sb: seenB, lk: luck };
+    // kept so the results survive a reload, the back gesture or the phone closing the tab
+    var S = app.summary;
+    writeView(g.n ? { sec: r.sec, ans: S.ans, total: S.total, t0: r.t0, m0: S.m0, sp: S.sp, up: S.up ? 1 : 0, ord: S.ord, sb: S.sb, lk: S.lk } : null);
+    saveState();
+    renderSummary();
+  }
+
+  // ---------------------------------------------------------------- summary
+  function areaTable(g, onlyTouched) {
+    var h = '<thead><tr><th>Área</th><th>Aciertos</th><th>%</th></tr></thead><tbody>';
+    C.LIVE.forEach(function (a) {
+      var ai = C.AID[a.id], b = g.by.filter(function (x) { return x.a === ai; })[0];
+      if (!b) { if (!onlyTouched) h += '<tr><td>' + esc(a.name) + '</td><td class="muted" colspan="2">Sin responder</td></tr>'; return; }
+      var p2 = C.passes(b.c, b.n);
+      h += '<tr><td>' + esc(a.name) + '</td><td>' + b.c + ' de ' + b.n + '</td><td class="' + (p2 ? 'pass' : 'fail') + '">' + C.pct(b.c, b.n) + ' % ' + (p2 ? '✓' : '') + '<span class="vh">' + (p2 ? ' en la meta' : ' debajo de la meta') + '</span></td></tr>';
+    });
+    return h + '</tbody>';
+  }
+  function scoreTitle(c, n) { var p = C.passes(c, n); return { t: C.pct(c, n) + ' % · ' + (p ? 'En la meta' : 'Debajo de la meta'), cls: 'res-title ' + (p ? 'pass' : 'fail') }; }
+  var GOAL_RULE = 'La meta de la app es 90 % o más. CENEVAL no publica cuántos aciertos pide cada nivel, así que apuntar alto es lo seguro para el Sobresaliente.';
+  function renderSummary() {
+    var S = app.summary, g = S.g, sec = C.section(S.sec), partial = g.n < S.total;
+    $('sum-kicker').textContent = 'Resultado · ' + sec.name;
+    var title = $('sum-title'), rule = $('sum-rule'), st;
+    var luckTxt = S.lk > 0 ? ', <span class="nw">' + S.lk + ' de suerte</span>' : '';
+    var sub = '<span class="nw">' + g.c + ' de ' + g.n + '</span> correctas' + luckTxt + '.' + (partial ? ' Respondiste <span class="nw">' + g.n + ' de ' + S.total + '</span>.' : '');
+    var onlyAnswered = partial ? 'Solo cuentan las preguntas que respondiste.' : '';
+    $('sum-card').hidden = true;
+    if (sec.sim) {
+      var answered = Object.keys(S.ans).length;
+      st = scoreTitle(g.c, S.total);
+      title.textContent = st.t; title.className = st.cls;
+      $('sum-sub').innerHTML = '<span class="nw">' + g.c + ' de ' + S.total + '</span> correctas. Respondiste ' + answered + ' en ' + fmtMin(S.sp) + '.' + (S.up ? ' Se acabó el tiempo.' : '') +
+        (S.sb > 0 ? ' Ya habías practicado ' + (S.sb >= S.total ? 'todas.' : S.sb + ' de las ' + S.total + '.') : '');
+      if (g.by.length > 1) { $('sum-table').innerHTML = areaTable(g, true); $('sum-card').hidden = false; }
+      rule.textContent = 'Como en el examen, las que no respondiste cuentan como incorrectas. ' + GOAL_RULE;
+    } else if (sec.sub) {
+      $('sum-kicker').textContent = 'Sesión de hoy';
+      title.textContent = 'Sesión lista';
+      title.className = 'res-title pass';
+      $('sum-sub').innerHTML = '<span class="nw">' + g.c + ' de ' + g.n + '</span> bien' + luckTxt + '.' + (partial ? ' Respondiste <span class="nw">' + g.n + ' de ' + S.total + '</span>.' : '');
+      rule.textContent = '';
+    } else if (sec.area !== undefined) {
+      st = scoreTitle(g.c, g.n);
+      title.textContent = st.t; title.className = st.cls;
+      $('sum-sub').innerHTML = sub;
+      rule.textContent = ((C.passes(g.c, g.n) ? '' : GOAL_RULE + ' ') + onlyAnswered).trim();
+    } else {
+      var ok = g.by.filter(function (b) { return C.passes(b.c, b.n); }).length;
+      title.textContent = ok + ' de ' + g.by.length + (g.by.length === 1 ? ' área en la meta' : ' áreas en la meta');
+      title.className = 'res-title';
+      $('sum-sub').innerHTML = sub;
+      $('sum-table').innerHTML = areaTable(g);
+      $('sum-card').hidden = false;
+      rule.textContent = (GOAL_RULE + ' ' + onlyAnswered).trim();
+    }
+    if (!storageOk) rule.textContent = (rule.textContent + ' El avance no se está guardando en este navegador.').trim();
+    rule.hidden = !rule.textContent;
+    // where the questions of this round stand now in the review: dominated, on their way, back tomorrow
+    var cnt = { done: 0, way: 0, rev: 0 }, tomorrow = C.addDays(Date.now(), 2);
+    Object.keys(S.ans).forEach(function (k) { var st = C.srsState(state.srs[k]); if (st !== 'new' && (st !== 'rev' || state.srs[k][1] < tomorrow)) cnt[st]++; });
+    var mv = '';
+    if (cnt.done) mv += '<span class="m-done tnum"><i></i>' + plural(cnt.done, 'dominada', 'dominadas') + '</span>';
+    if (cnt.way) mv += '<span class="m-way tnum"><i></i>' + cnt.way + ' en camino</span>';
+    if (cnt.rev) mv += '<span class="m-rev tnum"><i></i>' + plural(cnt.rev, 'vuelve', 'vuelven') + ' mañana</span>';
+    $('sum-mv').innerHTML = mv;
+    $('sum-mv').hidden = !mv;
+    // right answers that could not move up: they were missed today and come back tomorrow anyway
+    var stuck = Object.keys(S.ans).filter(function (k) { return S.ans[k] === app.keys[k] && C.srsState(state.srs[k]) === 'rev'; }).length - (S.lk || 0);
+    var note = cnt.way ? 'Las que quedaron en camino vuelven en unos días. Si las aciertas ese día, quedan dominadas.' : '';
+    if (stuck > 0) note += (note ? ' ' : '') + (stuck === 1 ? 'Una que acertaste ya estaba por repasar y vuelve mañana: acertarla antes de su día no cuenta.' :
+      stuck + ' que acertaste ya estaban por repasar y vuelven mañana: acertarlas antes de su día no cuenta.');
+    $('sum-mv-note').textContent = note;
+    $('sum-mv-note').hidden = !note;
+    var sorted = g.wrong.slice().sort(function (a, b) { return C.byId[a].i - C.byId[b].i; });
+    app.summary.wrongSorted = sorted;
+    // today's session ends the day: the topics to look at tomorrow, then "Listo por hoy"
+    var tl = $('sum-topic-list'), seenT = {}, th = '';
+    var nT = 0;
+    if (sec.sub) sorted.forEach(function (qi, k) {
+      var gq = C.byId[qi].guide;
+      if (!gq || seenT[gq.t]) return;
+      seenT[gq.t] = 1; nT++;
+      if (nT <= 6) th += '<button class="topic" data-rev="' + k + '">' + esc(gq.t) + '</button>';
+      else if (nT === 7) th += '<button class="topic" data-rev="' + k + '">y más…</button>';
+    });
+    tl.innerHTML = th; $('sum-topics').hidden = !th;
+    $('sum-wrong-box').hidden = !sorted.length;
+    var rv = $('sum-review'), ag = $('sum-again'), hm = $('sum-home');
+    var missWord = sec.sim ? ' que no acertaste' : ' que fallaste'; // a simulacro's list includes the unanswered
+    rv.textContent = sorted.length === 1 ? 'Repasar la' + missWord : 'Repasar las ' + sorted.length + missWord;
+    if (sec.sub) {
+      hm.textContent = 'Listo por hoy'; hm.className = 'btn block'; hm.style.order = 1;
+      rv.className = 'btn ghost block'; $('sum-wrong-box').style.order = 2;
+      ag.textContent = 'Otra tanda de ' + prefs().size; ag.className = 'link'; ag.style.order = 3;
+    } else {
+      rv.className = 'btn block'; $('sum-wrong-box').style.order = 1;
+      ag.textContent = sec.sim ? 'Repetir el simulacro' : 'Nueva ronda'; ag.className = 'btn block ' + (sorted.length ? 'ghost' : ''); ag.style.order = 2;
+      hm.textContent = 'Inicio'; hm.className = 'btn ghost block'; hm.style.order = 3;
+    }
+    show('scr-sum');
+  }
+  function restoreView() {
+    var v = readView(), sec = v && C.section(v.sec);
+    if (!sec) return false;
+    var order = v.ord || Object.keys(v.ans).sort(function (a, b) { return C.byId[a].i - C.byId[b].i; });
+    var g = C.grade({ order: order, ans: v.ans }, app.keys, !!sec.sim);
+    if (!g.n) return false;
+    app.round = null; app.mode = 'quiz';
+    app.summary = { sec: v.sec, g: g, ans: Object.assign({}, v.ans), total: v.total, t0: v.t0, m0: v.m0, sp: v.sp, up: v.up, ord: v.ord || null, sb: v.sb, lk: Math.min(v.lk, g.c) };
+    renderSummary();
+    return true;
+  }
+  function openReview(k) {
+    if (!app.summary || !app.summary.wrongSorted.length) return;
+    app.review = { list: app.summary.wrongSorted, pos: Math.max(0, Math.min(k, app.summary.wrongSorted.length - 1)), ans: app.summary.ans, tries: app.review && app.review.ans === app.summary.ans ? app.review.tries : {} };
+    app.mode = 'review';
+    show('scr-quiz');
+    renderQuestion();
+  }
+  // origin: where "← Volver" leads (the area's answer sheet or the start)
+  function openBrowse(list, pos, origin) {
+    app.review = { list: list, pos: Math.max(0, Math.min(pos || 0, list.length - 1)), ans: {}, origin: origin || 'home' };
+    app.mode = 'browse';
+    show('scr-quiz');
+    renderQuestion();
+  }
+  function reviewStep(d) {
+    var rv = app.review, np = rv.pos + d;
+    if (np < 0) return;
+    if (np >= rv.list.length) { leaveQuiz(); return; }
+    rv.pos = np;
+    renderQuestion();
+    window.scrollTo(0, 0);
+  }
+  function leaveQuiz() {
+    stopSim();
+    if (app.mode === 'review') { app.mode = 'quiz'; show('scr-sum'); return; }
+    if (app.mode === 'browse') {
+      var origin = app.review && app.review.origin;
+      app.mode = 'quiz';
+      if (origin === 'area' && app.areaId) renderArea(app.areaId);
+      else renderHome();
+      return;
+    }
+    var back = app.round && C.section(app.round.sec);
+    app.round = null; app.lastAns = null;
+    if (back && back.area !== undefined) renderArea(C.AREAS[back.area].id);
+    else if (back && back.id === 'sim-len') renderArea('lec'); // started from the reading area's screen
+    else renderHome();
+  }
+
+  // the back gesture goes up one screen
+  function adoptNavEntry() { try { if (history.state && history.state.egelNav) app.navLen = history.length; } catch (e) {} }
+  window.addEventListener('popstate', function () {
+    if (now() - app.expectPop < 1500) {
+      // our own step back has landed
+      app.expectPop = -1e9; app.navBusyUntil = -1e9;
+      adoptNavEntry();
+      navSync(app.screen);
+      return;
+    }
+    goUp();
+  });
+
+  // ---------------------------------------------------------------- events
+  // two-step buttons ("tap again to confirm"): one timer per button, and the confirming tap
+  // must come a moment later, so a double tap never confirms by accident
+  function armButton(t, armedText, normalText, ms, onReset) {
+    clearTimeout(t._armT);
+    t.dataset.armed = '1'; t._armAt = now(); t._normalText = normalText; t.textContent = armedText;
+    t._armT = setTimeout(function () { t.dataset.armed = ''; t.textContent = normalText; if (onReset) onReset(); }, ms);
+  }
+  function endLabel() { return isSim() ? 'Entregar' : 'Terminar'; }
+  // "Terminar" (or a simulacro's "Entregar") asks once more before it ends the round
+  function endTap(t, byPointer) {
+    if (!app.round) return;
+    if (byPointer && now() < app.closeGuardUntil) { app.closeGuardUntil = now() + 1000; return; } // each ignored tap extends it
+    var st = syncActive();
+    if (st === 'finished' || st === 'replaced') { roundGone(st); return; }
+    if (st === 'moved') renderQuestion();
+    if (C.answeredCount(app.round) === 0) { setRound(app.round.sec, null, app.round.t0); saveState(); leaveQuiz(); return; }
+    var label = endLabel(), sim = isSim();
+    if (t.dataset.armed === '1') { if (armedReady(t)) { disarm(t, label); finishRound(); } return; }
+    armButton(t, sim ? 'Sí, entregar' : 'Sí, terminar', label, sim ? 4000 : 3000, sim ? function () { if (isSim() && app.screen === 'scr-quiz') renderAnswerState(); } : null);
+    if (sim) renderAnswerState(); // says how many are still unanswered
+  }
+  function simStep(d) {
+    if (!isSim()) return;
+    var s = syncActive();
+    if (s === 'moved') { renderQuestion(); return; }
+    if (s !== 'ok') { roundGone(s); return; }
+    if (!C.goTo(app.round, app.round.pos + d)) return;
+    setRound(app.round.sec, app.round);
+    saveState();
+    renderQuestion();
+    window.scrollTo(0, 0);
+  }
+  // a short vibration on Android phones; nothing where it isn't allowed or motion is reduced
+  var calm = false;
+  try { calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  function buzz(p) { try { if (!calm && navigator.vibrate) navigator.vibrate(p); } catch (e) {} }
+  function pop(c) {
+    var b = c >= 0 && document.querySelector('.opt[data-c="' + c + '"]');
+    if (!b || calm) return;
+    b.classList.add('pop');
+    setTimeout(function () { b.classList.remove('pop'); }, 200);
+  }
+  function disarm(t, normalText) { clearTimeout(t._armT); t.dataset.armed = ''; t.textContent = normalText; }
+  function armedReady(t) { return t.dataset.armed === '1' && now() - (t._armAt || 0) >= 450; }
+  document.addEventListener('click', function (ev) {
+    var t = ev.target.closest('button, [data-sec]');
+    if (!t) return;
+    var byPointer = ev.detail !== 0;
+    // the second tap of a double tap must not act on the screen that the first tap opened
+    if (byPointer && now() - app.screenAt < 400) return;
+    if (t.dataset.sec) { startSection(t.dataset.sec, t.dataset.fresh === '1'); return; }
+    if (t.dataset.area) { renderArea(t.dataset.area); return; }
+    if (t.classList.contains('opt')) { if (app.mode === 'browse' || app.mode === 'review') browseAnswer(+t.dataset.c, byPointer); else choose(+t.dataset.c, byPointer); return; }
+    if (t.classList.contains('sb')) { if (app.areaId) openBrowse(C.section(app.areaId).pool, +t.dataset.q, 'area'); return; }
+    if (t.classList.contains('topt')) { twinAnswer(+t.dataset.t); return; }
+    if (t.dataset.size) { setPrefs({ exam: prefs().exam, size: +t.dataset.size }); renderSettings(); return; }
+    if (t.dataset.fs) { setFs(+t.dataset.fs); renderSettings(); return; }
+    if (t.classList.contains('topic')) { openReview(+t.dataset.rev); return; }
+    if (t.dataset.gosim) { app.simFocus = t.dataset.gosim; renderArea(t.dataset.gosim); return; }
+    switch (t.id) {
+      case 'q-idk': choose(-1, byPointer); break;
+      case 'q-idk2': browseAnswer(-1, byPointer); break;
+      case 'q-guide-btn': toggleGuide(); break;
+      case 'q-ctx-btn': toggleCtx(); break;
+      case 'q-lucky-btn': toggleLucky(); break;
+      case 'a-back': renderHome(); break;
+      case 'a-sim2': startSection('sim-len', false); break;
+      case 'btn-browse-all': openBrowse(C.ALL_POOL, 0, 'home'); break;
+      case 'btn-sim': if (t.dataset.goarea) { app.simFocus = t.dataset.goarea; renderArea(t.dataset.goarea); } break;
+      case 'bk-save': backupFromHome(); break;
+      case 'bk-later': try { localStorage.setItem(NAG_KEY, String(Date.now())); } catch (e) {} $('bk-box').hidden = true; break;
+      case 'btn-method': show('scr-method'); break;
+      case 'method-home': renderHome(); break;
+      case 'btn-settings': renderSettings(); break;
+      case 'set-home': renderHome(); break;
+      case 'set-copy': copyText(t, backupCode(), 'Copiar respaldo'); break;
+      case 'set-restore':
+        var err = restoreCode($('set-paste').value);
+        if (err) setMsg(err); else { $('set-paste').value = ''; setMsg('Listo. Se recuperó tu avance.', true); }
+        break;
+      case 'set-reset':
+        if (t.dataset.armed === '1') {
+          if (!armedReady(t)) break;
+          disarm(t, 'Borrar mi avance');
+          setMsg(resetProgress() ? 'Listo. Empiezas de cero.' : 'No se pudo guardar en este navegador.', true);
+          break;
+        }
+        armButton(t, 'Toca otra vez para borrar', 'Borrar mi avance', 4000);
+        break;
+      case 'q-next': next(); break;
+      case 'q-back': leaveQuiz(); break;
+      case 'q-end': endTap(t, byPointer); break;
+      case 'q-prev': case 'q-rnext':
+        if (byPointer && now() - app.shownAt < 400) break; // a double tap moves one question, not two
+        if (isSim() && t.id === 'q-rnext' && app.round.pos + 1 >= app.round.order.length) { endTap($('q-end'), byPointer); break; }
+        if (isSim()) simStep(t.id === 'q-prev' ? -1 : 1); else reviewStep(t.id === 'q-prev' ? -1 : 1);
+        break;
+      case 'sum-review': openReview(0); break;
+      case 'set-back': renderHome(); break;
+      case 'method-back': renderHome(); break;
+      case 'set-share': shareBackup(t); break;
+      case 'sum-again': if (app.summary) startSection(app.summary.sec, true); break;
+      case 'sum-home': writeView(null); renderHome(); break;
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (app.screen !== 'scr-quiz') return;
+    var tgt = e.target, onCtl = tgt && tgt.closest && tgt.closest('button, a, input, select, textarea, label');
+    var k = (e.key || '').toLowerCase();
+    if (k === 'g' && !$('q-guide').hidden) { toggleGuide(); e.preventDefault(); return; }
+    if (k === 't' && !$('q-ctx-box').hidden) { toggleCtx(); e.preventDefault(); return; }
+    var idx = k.length === 1 ? 'abc'.indexOf(k) : -1; if (idx < 0 && k.length === 1) idx = '123'.indexOf(k);
+    if (app.mode === 'quiz') {
+      if (idx >= 0) { choose(idx, false); e.preventDefault(); return; }
+      if (isSim()) {
+        if (e.key === 'ArrowRight' || (e.key === 'Enter' && !onCtl)) { if (app.round.pos + 1 < app.round.order.length) simStep(1); e.preventDefault(); }
+        else if (e.key === 'ArrowLeft') { simStep(-1); e.preventDefault(); }
+        return;
+      }
+      var answered = app.round && app.round.ans[curQi()] !== undefined;
+      if (answered && (e.key === 'ArrowRight' || (e.key === 'Enter' && (!onCtl || tgt.id === 'q-next')))) { next(); e.preventDefault(); }
+    } else {
+      if ((app.mode === 'browse' || app.mode === 'review') && idx >= 0) { browseAnswer(idx, false); e.preventDefault(); return; }
+      if (e.key === 'ArrowRight') { reviewStep(1); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { reviewStep(-1); e.preventDefault(); }
+    }
+  });
+  window.addEventListener('resize', function () { if (app.screen === 'scr-quiz') syncBarHeight(); });
+
+  // ---------------------------------------------------------------- text size
+  function getFs() { try { var v = +localStorage.getItem(FS_KEY); return v === 1 || v === 2 ? v : 0; } catch (e) { return 0; } }
+  function setFs(v) { try { localStorage.setItem(FS_KEY, String(v)); } catch (e) {} applyFs(); }
+  function applyFs() { document.documentElement.dataset.fs = String(getFs()); }
+  applyFs();
+
+  // ---------------------------------------------------------------- start
+  try { if (history.state && history.state.egelNav) app.navLen = history.length; } catch (e) {}
+  window.__app = { app: app, state: function () { return state; }, CORE: C, save: saveState, dirty: function () { return dirty; } };
+  if (!C.Q.length) { $('home-msg').hidden = false; $('home-msg').textContent = 'No se cargaron las preguntas. Recarga la página.'; show('scr-home'); return; }
+  if (!restoreView()) renderHome();
+})();
+
+</script>
+
+
+<script>
+// works offline after the first visit
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+}
+</script>
+</body>
+</html>
